@@ -1,0 +1,54 @@
+
+body {
+	background-color: rgb(245, 246, 255);
+}
+
+.main-container {
+	margin: 20px 20px 100px 50px;
+}
+
+/* Estilo da div Imagem Perfil*/
+#img-perfil img {
+	width: 170px;
+	height:230px;
+	border-radius: 20px;
+}
+
+
+/* Estilo da div Menu-Grupos*/
+#menu-grupos a {
+	text-align: center;
+}
+
+/*Estilo Div Busca */
+
+/*Estilo Div Postar*/
+#post {
+	width: 100%;
+	height: 80px;
+	border-radius: 7px;
+}
+.submit {
+	border-radius: 3px;	
+}
+
+/*Estilo Div Posts*/
+#div-posts img{
+	width: 90px;
+	height: 90px;
+}
+
+/*Estilo Div Login*/
+#div-login{
+	padding-top: 150px;
+}
+
+/*Estilo Div Cadastro*/
+#div-cadastro{
+	padding-top: 50px;	
+}
+
+/*Estilo Div Perfil*/
+#div-perfil {
+	padding-bottom: 20px;
+}

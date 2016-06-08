@@ -43,16 +43,16 @@
 				<hr/>
 				
 				<!-- Perfil -->
-				<div class="row" ng-controller="EditController">
+				<div class="row" ng-controller="editController">
 					<div id="div-perfil" class="panel panel-default">
 						<div class="media">
 							<div class="col-sm-offset-1 col-sm-10">
-								<h3><strong>Dkdkfjk Dkaklo</strong></h3>
+								<h3><strong>{{nome}}</strong></h3>
 								<ul class=" media-body list-group">
-									<li>Idade: 25</li>
-									<li>Cidade: Santos</li>
-									<li>E-mail: djsji@kfkd.com</li>
-									<li>Fone: (28) 82883-3828</li>
+									<li>Idade: {{idade}} </li>
+									<li>Cidade: {{cidade}}</li>
+									<li>E-mail: {{email}}</li>
+									<li>Fone: {{fone}}</li>
 								</ul>
 							</div>
 							<div class="col-sm-1">
@@ -70,18 +70,18 @@
 					<h3><small>Posts</small></h3>
 					<div class="col-sm-12">
 						<!-- Posts -->
-						<div ng-controller="PostController" class="row">
+						<div ng-controller="postController" class="row">
 							<div id="posts" class="panel panel-default">
 								<div class="panel-heading">
-									<b>{{titulo}}</b>
+									<b>{{post_titulo}}</b>
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-2">
 										<img ng-src="{{endImg}}">
 									</div>	
 									<div class="col-sm-9">
-										<p>{{texto}}</p>
-										<p>{{nome}}</p>
+										<p>{{post_texto}}</p>
+										<p>{{post_nome}}</p>
 									</div>
 									<div class="col-sm-1">
 										<button ng-click="editPost()" type="button" class="btn btn-default" aria-label="Left Align">

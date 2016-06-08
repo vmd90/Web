@@ -14,8 +14,16 @@ app_module.config(['$routeProvider',
 	}
 ]);
 
-app_module.controller('loginController', function($scope) {
-	
+app_module.factory('Service', function ($http){
+	return {
+		'get_posts': function(){
+			return $http.get('/post/show_posts');
+		}
+	}
+});
+
+
+app_module.controller('loginController', function ($scope) {
 	//Dados de login padrãos
 	var email = "henrique@usp.br";
 	var password = "henrique";
@@ -31,51 +39,51 @@ app_module.controller('loginController', function($scope) {
 	$scope.cadastrar = function(){
 		window.location = "cadastro.html";
 	}
-
 });
 
-app_module.controller('editController', function($scope, MyData, MyService) {
-	$scope.name = "Dkdkfjk Dkaklo";
-	$scope.age = 25;
-	$scope.city = "Santos";
-	$scope.mail = "djsji@kfkd.com";
-	$scope.phone = "(28) 82883-3828";
-
-	MyData.name = $scope.name;
+app_module.controller('editController', function ($scope) {
+	$scope.nome = "Vitor";
+	$scope.idade = 25;
+	$scope.cidade = "Santos";
+	$scope.email = "djsji@kfkd.com";
+	$scope.fone = "(28) 82883-3828";
 
 	$scope.edit = function () {
 		
 	}
-
 });
 
-app_module.controller('addPostController', function ($scope, MyData) {
-	$scope.title = "New post";
-	$scope.text = "Post content...";
+app_module.controller('addPostController', function ($scope) {
+	//$scope.title = "New post";
+	//$scope.text = "Post content...";
 
 	$scope.addPost = function() {
-		MyData.name = "New Post";
 	}
 });
 
-app_module.controller('postController', function($scope, MyData) {
-	$scope.nome = MyData.name;
-	$scope.titulo = "Feb 24 18:45 - Lsjdii jsjjao jsdkdk!!!";
-    $scope.texto = "ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod";
-	$scope.endImg = "img/img.png";
+app_module.controller('postController', function ($scope, Service) {
+	
+	//Recupera informações no banco
+	Service.get_posts().then(
+		//Sucesso
+		function(respon){
+			$scope.post_titulo = respon.data.titulo;
+			$scope.post_texto = respon.data.texto;
+			$scope.post_nome = respon.data.nome;
+		},
+		//error
+		function(respon){
+			console.log('Erro ao recuperar post do servidor');
+		}
+	);
 
     $scope.editPost = function() {
     };
 
     $scope.nextPost = function() {
-    	$scope.titulo = "May 31 00:00 - Titulo 2 Novo";
-        $scope.texto = "wwwwwwwwwwwwwwwww wwwwwwwww wwwwwwwww w wwwwwwwww wwwwwwwwww wwwwwwwwww wwwwwwwwwwwwwwwww";
-        $scope.endImg = "img/img2.png";
+    	
     };
 
     $scope.backPost = function () {
-    	$scope.titulo = "Feb 24 18:45 - Lsjdii jsjjao jsdkdk!!!";
-	    $scope.texto = "ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod";
-		$scope.endImg = "img/img.png";
     }
 });

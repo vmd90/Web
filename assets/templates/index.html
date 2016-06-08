@@ -1,4 +1,4 @@
-<div class="main-container container-fluid">
+<div class="main-container container-fluid" ng-controller="indexController">
 		
 		<!-- Pagina Perfil -->
 		<div class="row">
@@ -8,8 +8,9 @@
 				<!-- Imagem -->
 				<div class="row">
 					<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
-						<img src="images/img.jpg"/>
-						<h4><a href="">Victor</a></h4>
+						<!--<img src="images/img.jpg"/>-->
+						<img ng-src="{{user_img}}"/>
+						<h4><a href="">{{user_nome}}</a></h4>
 					</div>
 				</div>
 				<!-- Menu Grupos -->
@@ -43,16 +44,16 @@
 				<hr/>
 				
 				<!-- Perfil -->
-				<div class="row" ng-controller="editController">
+				<!--<div class="row" ng-controller="editController">-->
+				<div class="row">
 					<div id="div-perfil" class="panel panel-default">
 						<div class="media">
 							<div class="col-sm-offset-1 col-sm-10">
-								<h3><strong>{{nome}}</strong></h3>
+								<h3><strong>{{user_nome}}</strong></h3>
 								<ul class=" media-body list-group">
-									<li>Idade: {{idade}} </li>
-									<li>Cidade: {{cidade}}</li>
-									<li>E-mail: {{email}}</li>
-									<li>Fone: {{fone}}</li>
+									<li>E-mail: {{user_email}} </li>
+									<li>Nascimento: {{user_birthday}}</li>
+									<li>Descrição: {{user_bio}}</li>
 								</ul>
 							</div>
 							<div class="col-sm-1">
@@ -70,7 +71,8 @@
 					<h3><small>Posts</small></h3>
 					<div class="col-sm-12">
 						<!-- Posts -->
-						<div ng-controller="postController" class="row">
+						<!--<div ng-controller="postController" class="row">-->
+						<div class="row">
 							<div id="posts" class="panel panel-default">
 								<div class="panel-heading">
 									<b>{{post_titulo}}</b>
@@ -105,4 +107,4 @@
 			</article>
 			<!-- FIM FRAME 2 -->
 		</div>
-	</div>
+</div>

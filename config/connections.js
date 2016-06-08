@@ -79,7 +79,7 @@ module.exports.connections = {
      host: 'localhost',
      user: 'postgres', // optional
      password: '20014017', // optional
-     database: 'postgres' //optional
+     database: 'projeto' //optional
    }
 
 

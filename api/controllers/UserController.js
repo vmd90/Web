@@ -6,25 +6,22 @@
  */
 
 module.exports = {
+
 	add_user: function(req, res) {
-		var u = {
-					'id': 1,
-					'name': 'Vitor',
-					'email': 'vitor@usp.br', 
-					'password': 'vitor',
-					'birthday': '08//04//1992',
-					'bio': 'Estudante de BCC na USP',
-					'photo': 'perfil1.jpg'
-				};
-
-		User.create(u).exec(function callback(error, user_created){
+		var user = {
+			'name': req.param('name'),
+			'email': req.param('email'),
+			'password': req.param('password'),
+			'birthday': req.param('birthday'),
+			'bio': req.param('bio'),
+			'photo': req.param('photo')
+		};
+		User.create(user).exec( function callback(error, created_user){
 			if(error){
-				console.log('Erro durante inserção de usuario');
+				console.log('Erro durante inserção de usuario. (UserController.js)');
 			}
-
-			console.log('Usuario adicionado com sucesso');
-
-			return res.json(user_created);
+			console.log('Usuario inserido com sucesso');
+			return res.json(created_user);
 		});
 	},
 

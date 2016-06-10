@@ -27,6 +27,6 @@ login_module.controller('loginController', function ($scope, Service) {
 	},
 
 	$scope.cadastrar = function(){
-		window.location = "/cadastro.html";
+		window.location = "#/cadastro.html";
 	}
 });

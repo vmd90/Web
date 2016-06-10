@@ -8,10 +8,6 @@
 module.exports = {
 
   attributes: {
-  	id: {
-		type: 'integer',
-		primaryKey: true
-	},
 	name: {
 		type: 'string',
 		required: true,
@@ -31,7 +27,7 @@ module.exports = {
 		unique: false
 	},
 	birthday: {
-		type: 'timestamp',
+		type: 'string',
 		required: true,
 		notNull: true,
 		unique: false

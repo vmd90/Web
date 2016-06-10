@@ -18,6 +18,9 @@ service_module.factory('Service', function ($http){
 		'login': function(email, password){
 			return $http.post('/user/login', {'email':email, 'password': password});
 		},
+		'cadastrar': function(user){
+			return $http.post('/user/add_user', user);
+		},
 		
 		//Serviços para posts
 		'get_posts': function(){

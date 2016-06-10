@@ -17,6 +17,8 @@ cadastro_module.controller('cadastroController', function ($scope, Service){
 		}
 
 		Service.cadastrar(user);
+		Service.set_user(user);
+		window.location = "#/index.html";
 	},
 
 	$scope.cancelar = function () {

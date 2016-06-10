@@ -11,6 +11,10 @@ cadastro_module.controller('cadastroController', function ($scope, Service){
 			'email': $scope.user_email,
 			'password': $scope.user_password
 		};
+		
+		if(!$scope.user_photo) {
+			$scope.user_photo = "/images/semfoto.jpg";
+		}
 
 		Service.cadastrar(user);
 	},

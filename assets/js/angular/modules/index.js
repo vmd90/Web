@@ -39,10 +39,14 @@ index_module.controller('indexController', function ($scope, Service) {
 			//Sucesso
 			function (res) {
 				console.log(res);
+				$scope.tweet_title = '';
+				$scope.tweet_text = '';
 			},
 			//Erro
 			function (res) {
 				console.log('Erro: index.js - postar().');
+				$scope.tweet_title = '';
+				$scope.tweet_text = '';
 			}
 		);
 	},

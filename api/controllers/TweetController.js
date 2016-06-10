@@ -23,6 +23,10 @@ module.exports = {
 
 			return res.json(tweet_created);
 		});
+	},
+	
+	show_tweet: function (req, res) {
+		
 	}
 
 };

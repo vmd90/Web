@@ -1,0 +1,92 @@
+<div class="main-container container-fluid" ng-controller="editController">
+
+    <!-- Pagina Edit -->
+    <div class="row">
+
+        <!-- Frame 1 - Foto -->
+        <aside class="col-sm-2">
+            <!-- Imagem -->
+            <div class="row">
+                <div id="img-perfil" class="col-sm-8 col-sm-offset-1">
+                    <!--<img src="images/img.jpg"/>-->
+                    <img ng-src="{{user_img}}" />
+                </div>
+            </div>
+        </aside>
+        <!-- Frame 2 -->
+        <article class="col-sm-8 col-sm-offset-1">
+            <div class="row">
+                <div id="div-edit-panel" class="panel panel-default">
+                    <div class="col-sm-offset-1">
+                        <h2><strong>{{user_nome}}</strong></h2>
+                        <!-- Edit -->
+                        <form id="form-edit">
+                            <div class="control-group row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <label class="control-label">Nome: </label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="Nome" ng-model="user_name"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <label class="control-label">Nascimento: </label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="dd/mm/aaaa" ng-model="user_birthday"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <label class="control-label">Descrição: </label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="Descrição" ng-model="user_bio"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <label class="control-label">Foto: </label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="Foto" ng-model="user_photo"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <label class="control-label">E-mail: </label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="E-mail" ng-model="user_email"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <label class="control-label">Senha: </label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="Password" ng-model="user_password"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <label class="control-label">Confirmar senha: </label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="Password" ng-model="user_password2"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <input type="button" class="btn btn-default" value="Cancelar" ng-click="cancelar()">
+                                    <input type="button" class="btn btn-primary" value="Salvar" ng-click="salvar()">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>

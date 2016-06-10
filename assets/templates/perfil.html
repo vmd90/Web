@@ -1,4 +1,4 @@
-<div class="main-container container-fluid" ng-controller="indexController">
+<div class="main-container container-fluid" ng-controller="perfilController">
 		
 		<!-- Pagina Perfil -->
 		<div class="row">
@@ -10,7 +10,7 @@
 					<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
 						<!--<img src="images/img.jpg"/>-->
 						<img ng-src="{{user_img}}"/>
-						<h4><a href="" ng-click="perfil()">{{user_nome}}</a></h4>
+						<h4><a href="">{{user_nome}}</a></h4>
 					</div>
 				</div>
 				<!-- Menu Grupos -->
@@ -43,21 +43,32 @@
 				</section>
 				<hr/>
 				
-				<!-- Postar -->
-				<section id="div-post" class="row">
-					<form>
-						<input type="text" class="form-control" placeholder="Titulo" aria-describedby="basic-addon1" ng-model="tweet_title"><br />
-						<textarea id="post" placeholder="O que deseja postar?" cols="100" ng-model='tweet_text'></textarea><br>
-						<button class="btn btn-default" type="button" title="Cancelar" ng-click="cancelar()">Cancelar</button>
-						<button class="btn btn-default" type="button" title="Postar" ng-click="postar()">Postar</button>
-					</form>
-				</section>
-				<hr/>
+				<!-- Perfil -->
+				<!--<div class="row" ng-controller="editController">-->
+				<div class="row">
+					<div id="div-perfil" class="panel panel-default">
+						<div class="media">
+							<div class="col-sm-offset-1 col-sm-10">
+								<h3><strong>{{user_nome}}</strong></h3>
+								<ul class=" media-body list-group">
+									<li>E-mail: {{user_email}} </li>
+									<li>Nascimento: {{user_birthday}}</li>
+									<li>Descrição: {{user_bio}}</li>
+								</ul>
+							</div>
+							<div class="col-sm-1">
+								<button ng-click="edit()" type="button" class="btn btn-default" aria-label="Left Align">
+		  							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<!-- Posts -->
 				<section id="div-posts" class="row">
 					<!-- Titulo Posts -->
-					<h3><small>Tweets</small></h3>
+					<h3><small>Meus Tweets</small></h3>
 					<div class="col-sm-12">
 						<!-- Posts -->
 						<!--<div ng-controller="postController" class="row">-->

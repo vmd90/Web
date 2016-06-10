@@ -8,17 +8,13 @@
 module.exports = {
 
   attributes: {
-  	id: {
-  		type: 'integer',
-  		primaryKey: true
-  	},
 	user: {
 		type: 'integer',
 		required: true,
 		notNull: true,
 		unique: false
 	},
-  	title: {
+  	tittle: {
 		type: 'string',
 		required: true,
 		notNull: true,
@@ -26,12 +22,6 @@ module.exports = {
 	},
 	text: {
 		type: 'text',
-		required: true,
-		notNull: true,
-		unique: false
-	},
-	timestamp: {
-		type: 'datetime',
 		required: true,
 		notNull: true,
 		unique: false

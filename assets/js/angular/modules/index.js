@@ -1,34 +1,16 @@
 var index_module = angular.module('app.index', []);
 
-index_module.factory('Service', function ($http){
-	
-	return {
-		'get_user': function(id){
-			return $http.get('/user/get_user?id='+id);
-		},
-		'get_posts': function(){
-			return $http.get('/post/show_posts');
-		}
-	}
-});
-
 index_module.controller('indexController', function ($scope, Service) {
 	//Recupera informações do usuario
-	Service.get_user(1).then(
-		//Sucesso
-		function (res) {
-			$scope.user_img = "images/"+res.data.photo;
-			console.log($scope.user_img);
-			$scope.user_nome = res.data.name;
-			$scope.user_bio = res.data.bio;
-			$scope.user_birthday = res.data.birthday;
-			$scope.user_email = res.data.email;
-		},
-		//Erro
-		function (res) {
-			console.log('Erro ao carregar informacoes do usuario');
-		}
-	);
+	var user = Service.get_user();
+	if(!user){
+		window.location = "/";
+	}
+	$scope.user_img = "images/"+user.photo;
+	$scope.user_nome = user.name;
+	$scope.user_bio = user.bio;
+	$scope.user_birthday = user.birthday;
+	$scope.user_email = user.email;
 
 	//Recupera posts do usuário
 	/*Service.get_posts().then(
@@ -44,4 +26,29 @@ index_module.controller('indexController', function ($scope, Service) {
 		}
 	);*/
 
+	//Links
+	$scope.perfil = function () {
+		window.location = "#/perfil.html";
+	},
+
+	$scope.postar = function () {
+		var title = $scope.tweet_title;
+		var text = $scope.tweet_text;
+		var id = user.id
+		Service.add_tweet(id, title, text).then(
+			//Sucesso
+			function (res) {
+				console.log(res);
+			},
+			//Erro
+			function (res) {
+				console.log('Erro: index.js - postar().');
+			}
+		);
+	},
+
+	$scope.cancelar = function () {
+		$scope.tweet_title = '';
+		$scope.tweet_text = '';
+	}
 });

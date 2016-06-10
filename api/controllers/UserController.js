@@ -37,6 +37,22 @@ module.exports = {
 
 			return res.json(u);
 		});
+	},
+
+	login: function(req, res){
+		var email = req.param('email');
+		var password = req.param('password');
+		User.findOne({
+			'email': email,
+			'password': password
+		}).exec( function callback(error, u){
+			if(error){
+				console.log('Email ou senha invalidos');
+			}
+
+			return res.json(u);
+		});
+		
 	}
 	
 };

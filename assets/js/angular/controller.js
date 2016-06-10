@@ -1,4 +1,4 @@
-var app_module = angular.module('app', ['ngRoute', 'app.login', 'app.index']);
+var app_module = angular.module('app', ['ngRoute', 'app.login', 'app.index', 'app.service', 'app.perfil']);
 
 app_module.config(['$routeProvider',
 	function($routeProvider){
@@ -11,6 +11,9 @@ app_module.config(['$routeProvider',
 		}).when('/cadastro.html', {
 			templateUrl: '/templates/cadastro.html',
 			controller: ''
+		}).when('/perfil.html', {
+			templateUrl: '/templates/perfil.html',
+			controller: 'perfilController'
 		}).otherwise({
 			redirectTo: '/'
 		});

@@ -1,0 +1,20 @@
+<div class="main-container container-fluid">
+	<div ng-controller="PostController" class="row">
+		<div id="posts" class="panel panel-default">
+			<div class="panel-heading">
+				<b>{{titulo}}</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<p>{{texto}}</p>
+				</div>
+				<button ng-click="like()" type="button" class="btn btn-default" aria-label="Left Align">
+					<span id="like" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+				</button>
+				<button ng-click="dislike()" type="button" class="btn btn-default" aria-label="Left Align">
+					<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

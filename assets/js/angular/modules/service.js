@@ -21,6 +21,9 @@ service_module.factory('Service', function ($http){
 		'cadastrar': function(user){
 			return $http.post('/user/add_user', user);
 		},
+		'update_user': function(old_info, updated_info) {
+			return $http.post('/user/update', {'old_info': old_info, 'updated_info': updated_info});
+		},
 		
 		//Serviços para posts
 		'get_posts': function(){

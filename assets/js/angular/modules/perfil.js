@@ -38,7 +38,7 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 		}
 	);*/
 
-	$scope.edit = function () {
-		window.location = "#/edit.html";
+	$scope.perfil_edit = function () {
+		window.location = "#/perfil-editar.html";
 	}
 });

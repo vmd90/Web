@@ -6,7 +6,7 @@ index_module.controller('indexController', function ($scope, Service) {
 	if(!user){
 		window.location = "/";
 	}
-	$scope.user_img = "images/"+user.photo;
+	$scope.user_img = user.photo;
 	$scope.user_nome = user.name;
 	$scope.user_bio = user.bio;
 	$scope.user_birthday = user.birthday;

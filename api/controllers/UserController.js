@@ -63,7 +63,7 @@ module.exports = {
                 return;
             }
 
-            console.log("Updating user "+updated[0].name);
+            return res.json(updated);
         });
 	}
 	

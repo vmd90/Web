@@ -7,7 +7,7 @@ perfilEditar_module.controller('perfilEditarController', function ($scope, Servi
     }
     //console.log(user);
     
-    $scope.user_img = user.photo;
+    $scope.user_photo = user.photo;
 	$scope.user_name = '';
 	$scope.user_bio = '';
 	$scope.user_birthday = '';
@@ -15,8 +15,8 @@ perfilEditar_module.controller('perfilEditarController', function ($scope, Servi
     $scope.user_password = '';
     
     $scope.cancel = function() {
-        // Volta para pagina anterior
-        window.history.back();
+        // Volta para pagina de perfil
+        window.location = "#/perfil.html";
     }
     
     $scope.save = function () {
@@ -30,6 +30,10 @@ perfilEditar_module.controller('perfilEditarController', function ($scope, Servi
         if ($scope.user_bio) {
             old_info.bio = user.bio;
             updated_info.bio = $scope.user_bio;
+        }
+        if ($scope.user_photo) {
+            old_info.photo = user.photo;
+            updated_info.photo = $scope.user_photo;
         }
         if ($scope.user_birthday) {
             old_info.birthday = user.birthday;
@@ -49,12 +53,14 @@ perfilEditar_module.controller('perfilEditarController', function ($scope, Servi
         Service.update_user(old_info, updated_info).then(
             // sucesso
             function(res) {
-                console.log(res);
+                console.log("Sucesso update\n"+ res.data);
             },
             // erro
             function(res) {
                 console.log("Erro - perfil-editar.js - save()")
             }
         );
+        Service.set_user(user);
+        window.location = "#/perfil.html";
     }
 });

@@ -6,21 +6,19 @@
         <!-- Frame 1 - Foto -->
         <aside class="col-sm-2">
             <!-- Imagem -->
-            <div class="row">
-                <div id="img-perfil" class="col-sm-8 col-sm-offset-1">
-                    <!--<img src="images/img.jpg"/>-->
-                    <img ng-src="{{user_img}}" />
-                </div>
+            <div id="img-perfil">
+                <!--<img src="images/img.jpg"/>-->
+                <img ng-src="{{user_photo}}" />
             </div>
         </aside>
         <!-- Frame 2 -->
         <article class="col-sm-8 col-sm-offset-1">
             <div class="row">
                 <div id="div-perfil-edit-panel" class="panel panel-default">
-                    <div class="col-sm-offset-1">
-                        <h3><strong>Alterar perfil</strong></h3>
+                    <div class="panel-heading"><h2><strong>Alterar perfil</strong></h2></div>
+                    <div class="col-sm-offset-1 panel-body">
                         <!-- Edit -->
-                        <form id="form-perfil-edit">
+                        <form id="form-perfil-edit" class="form-horizontal" role="form">
                             <div class="control-group row">
                                 <div class="col-md-4 col-md-offset-4">
                                     <label class="control-label">Nome: </label>
@@ -65,7 +63,7 @@
                                 <div class="col-md-4 col-md-offset-4">
                                     <label class="control-label">Senha: </label>
                                     <div class="controls">
-                                        <input type="text" class="form-control" placeholder="Password" ng-model="user_password"><br>
+                                        <input type="password" class="form-control" placeholder="Password" ng-model="user_password"><br>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +71,7 @@
                                 <div class="col-md-4 col-md-offset-4">
                                     <label class="control-label">Confirmar senha: </label>
                                     <div class="controls">
-                                        <input type="text" class="form-control" placeholder="Password" ng-model="user_password2"><br>
+                                        <input type="password" class="form-control" placeholder="Password" ng-model="user_password2"><br>
                                     </div>
                                 </div>
                             </div>

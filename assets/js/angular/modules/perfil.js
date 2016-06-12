@@ -25,6 +25,10 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 	$scope.user_email = user.email;
 
 	$scope.tweets = [];
+	$scope.format_tweet_date = function(date) {
+		var d = new Date(date);
+		return d.toLocaleString();
+	}
 
 	//Recupera posts do usuário
 	Service.get_tweets(user.id).then(

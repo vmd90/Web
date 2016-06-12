@@ -26,8 +26,8 @@ service_module.factory('Service', function ($http){
 		},
 		
 		//Serviços para posts
-		'get_posts': function(){
-			return $http.get('/post/show_posts');
+		'get_tweets': function(user_id){
+			return $http.get('/tweet/get_tweets?user_id='+user_id);
 		},
 
 		'add_tweet': function(id, title, text){

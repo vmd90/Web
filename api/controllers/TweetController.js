@@ -10,13 +10,14 @@ module.exports = {
 	add_tweet: function (req, res) {
 		var tweet = {
 			'user': req.param('id'),
-			'tittle': req.param('title'),
+			'title': req.param('title'),
 			'text': req.param('text')
 		};
 		console.log(tweet);
 		Tweet.create(tweet).exec( function callback(error, tweet_created){
 			if(error){
 				console.log('Error: add_tweet(): erro na inserção');
+				return;
 			}
 
 			console.log('Tweet adicionado com sucesso');
@@ -25,8 +26,16 @@ module.exports = {
 		});
 	},
 	
-	show_tweet: function (req, res) {
-		
+	get_tweets: function (req, res) {
+		var user_id = req.param('user_id');
+		Tweet.find({'user': user_id}).exec(function(error, tweets) {
+			if (error) {
+				console.log("Erro: get_tweet()");
+				return;
+			}
+			console.log("Sucesso em buscar tweets");
+			return res.json(tweets);
+		});
 	}
 
 };

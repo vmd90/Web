@@ -7,6 +7,10 @@ body {
 	margin: 20px 20px 100px 50px;
 }
 
+.panel {
+	box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.3);
+}
+
 /* Estilo da div Imagem Perfil*/
 #img-perfil img {
 	width: 170px;

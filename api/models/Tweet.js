@@ -14,7 +14,7 @@ module.exports = {
 		notNull: true,
 		unique: false
 	},
-  	tittle: {
+  	title: {
 		type: 'string',
 		required: true,
 		notNull: true,

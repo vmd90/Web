@@ -43,47 +43,51 @@
 				</section>
 				<hr/>
 				
-				<!-- Perfil -->
+				<!-- Info Perfil -->
 				<!--<div class="row" ng-controller="editController">-->
-				<div class="row">
-					<div id="div-perfil" class="panel panel-default">
-						<div class="media">
-							<div class="col-sm-offset-1 col-sm-10">
-								<h3><strong>{{user_nome}}</strong></h3>
-								<ul class=" media-body list-group">
-									<li>E-mail: {{user_email}} </li>
-									<li>Nascimento: {{user_birthday}}</li>
-									<li>Descrição: {{user_bio}}</li>
-								</ul>
-							</div>
-							<div class="col-sm-1">
-								<button ng-click="perfil_edit()" type="button" class="btn btn-default" aria-label="Left Align">
-		  							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-								</button>
+				<section class="row" id="div-perfil">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-sm-11">
+										<h3><strong>{{user_name}}</strong></h3>
+										<div>E-mail: {{user_email}} </div>
+										<div>Nascimento: {{user_birthday}}</div>
+										<div>Descrição: {{user_bio}}</div>
+									</div>
+									<!-- Botao de editar perfil -->
+									<div class="col-sm-1">
+										<button ng-click="perfil_edit()" type="button" class="btn btn-default" aria-label="Left Align">
+				  							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
 				<!-- Posts -->
 				<section id="div-posts" class="row">
 					<!-- Titulo Posts -->
 					<h3><small>Meus Tweets</small></h3>
-					<div class="col-sm-12">
+					<div id="div-tweet-list" class="col-sm-12">
 						<!-- Posts -->
 						<!--<div ng-controller="postController" class="row">-->
+						<!--
 						<div class="row">
 							<div id="posts" class="panel panel-default">
 								<div class="panel-heading">
-									<b>{{post_titulo}}</b>
+									<b>{{tweet_title}}</b>
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-2">
-										<img ng-src="{{endImg}}">
+										<img ng-src="{{user_photo}}">
 									</div>	
 									<div class="col-sm-9">
-										<p>{{post_texto}}</p>
-										<p>{{post_nome}}</p>
+										<p>{{tweet_text}}</p>
+										<p><small>{{tweet_user}}</small></p>
 									</div>
 									<div class="col-sm-1">
 										<button ng-click="editPost()" type="button" class="btn btn-default" aria-label="Left Align">
@@ -92,7 +96,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- Botões -->
 							<div class="row">
 								<div class="col-sm-offset-5 col-sm-2">
 									<button ng-click="backPost()" class="btn btn-default" type="button" title="Ultimo post"><strong><</strong></button>
@@ -100,6 +103,7 @@
 								</div>
 							</div>
 						</div>
+						-->
 					</div>
 				</section>
 				<!-- FIM POSTS -->

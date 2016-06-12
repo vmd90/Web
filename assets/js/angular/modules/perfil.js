@@ -1,3 +1,4 @@
+
 var perfil_module = angular.module('app.perfil', []);
 
 /*index_module.factory('Service', function ($http){
@@ -45,5 +46,16 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 
 	$scope.perfil_edit = function () {
 		window.location = "#/perfil-editar.html";
+	}
+
+	// Exibe janela para editar tweet
+	$scope.show_tweet_edit_modal = function(index) {
+		angular.element('#edit-tweet-modal-'+index).modal('show');
+	}
+	// Atualiza um tweet
+	$scope.update_tweet = function() {
+		var title = angular.element('#tweet-title').value;
+		var text = angular.element('#tweet-text').value;
+		
 	}
 });

@@ -42,6 +42,15 @@ body {
 	height: 90px;
 }
 
+/* Edit Tweet Modal */
+.modal-header, .modal-title, .close {
+	background-color: #bbb;
+	text-align: center;
+}
+.modal-footer {
+	background-color: #f9f9f9;
+}
+
 /*Estilo Div Login*/
 #div-login{
 	padding-top: 150px;

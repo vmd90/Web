@@ -36,6 +36,20 @@ module.exports = {
 			console.log("Sucesso em buscar tweets");
 			return res.json(tweets);
 		});
+	},
+
+	update_tweet: function(req, res) {
+		var old_tweet = req.param('old_tweet');
+		var updated_tweet = req.param('updated_tweet');
+
+		Tweet.update(old_tweet, updated_tweet).exec(function(err, updated) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            return res.json(updated);
+        });
 	}
 
 };

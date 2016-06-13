@@ -1,0 +1,61 @@
+<div class="main-container container-fluid" ng-controller="indexController">
+	<!-- Pagina Perfil -->
+	<div class="row">
+
+		<!-- Frame 1 -->
+		<aside class="col-sm-2">
+			<!-- Imagem -->
+			<div class="row">
+				<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
+					<!--<img src="images/img.jpg"/>-->
+					<img ng-src="{{user_img}}"/>
+					<h4><a href="" ng-click="perfil()">{{user_nome}}</a></h4>
+				</div>
+			</div>
+			<!-- Menu Grupos -->
+			<div class="row">
+				<div id="menu-grupos" class="col-sm-8 col-sm-offset-1">
+					<h3>Grupos</h3>
+					<ul>
+						<li>Grupo 1</li>
+						<li>Grupo 2</li>
+						<li>Grupo 3</li>
+					</ul>
+					<div class="col-sm-1 col-sm-offset-11">
+						<a href="">mais...</a>
+					</div>
+				</div>
+			</div>
+		</aside>
+		<!-- FIM FRAME 1 -->
+
+		<!-- Frame 2 -->
+		<article class="col-sm-8 col-sm-offset-1">
+			<!-- Busca -->
+			<section id="div-busca col-sm-12" class="row">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+					<span class="input-group-addon" id="basic-addon1">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</span>
+				</div>
+			</section>
+			<hr/>
+
+			<!-- Membros -->
+			<section class="main-container container-fluid">
+				<div id="membros" class="panel panel-default">
+					<div class="panel-heading col-md-12">
+						<label class="col-md-offset-0">Grupos</label>
+						<button type="button" class="btn btn-default col-md-offset-10">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="panel-body">
+						{{grupos}}
+					</div>
+			</section>
+		</article>
+		<!-- FIM FRAME 2 -->
+	</div>
+</div>

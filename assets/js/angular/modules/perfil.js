@@ -1,3 +1,4 @@
+
 var perfil_module = angular.module('app.perfil', []);
 
 /*index_module.factory('Service', function ($http){
@@ -18,24 +19,60 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 	if(!user){
 		window.location = "/";
 	}
-	$scope.user_img = "images/"+user.photo;
-	$scope.user_nome = user.name;
+	$scope.user_photo = user.photo;
+	$scope.user_name = user.name;
 	$scope.user_bio = user.bio;
 	$scope.user_birthday = user.birthday;
 	$scope.user_email = user.email;
 
+	$scope.tweets = [];
+	$scope.format_tweet_date = function(date) {
+		var d = new Date(date);
+		return d.toLocaleString();
+	}
+
 	//Recupera posts do usuário
-	/*Service.get_posts().then(
+	Service.get_tweets(user.id).then(
 		//Sucesso
 		function (res) {
-			$scope.post_titulo = res.data.titulo;
-			$scope.post_texto = res.data.texto;
-			$scope.post_nome = res.data.nome;
+			// Array de tweets
+			$scope.tweets = res.data;
 		},
 		//Erro
 		function (res) {
-			console.log('Erro ao carregar posts');
+			console.log('Erro ao carregar tweets');
 		}
-	);*/
+	);
 
+	$scope.perfil_edit = function () {
+		window.location = "#/perfil-editar.html";
+	}
+
+	// Exibe janela para editar tweet
+	$scope.show_tweet_edit_modal = function() {
+		angular.element('#edit-tweet-modal-'+this.$index).modal('show');
+	}
+	// Atualiza um tweet
+	$scope.update_tweet = function() {
+		// esconde a janela modal
+		angular.element('#edit-tweet-modal-'+this.$index).modal('hide');
+
+		var updated_tweet = {
+			'title': this.tweet.title,
+			'text': this.tweet.text,
+			'updatedAt': new Date()
+		};
+
+		Service.update_tweet(this.tweet.id, updated_tweet).then(
+			// sucesso
+			function(res) {
+				// atualizar tweets na pagina
+				console.log("Sucesso no update: "+ res.data);
+			},
+			// erro
+			function(res) {
+				console.log("Erro ao atualizar tweet: "+res);
+			}
+		);
+	}
 });

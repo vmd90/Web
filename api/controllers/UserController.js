@@ -74,6 +74,21 @@ module.exports = {
 			}
 			return res.json(respon[0].groups);
 		});
+	},
+
+	update: function(req, res) {
+		var old_info = req.param('old_info');
+		var updated_info = req.param('updated_info');
+		//console.log(old_info);
+		//console.log(updated_info);
+		User.update(old_info, updated_info).exec(function(err, updated) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            return res.json(updated);
+        });
 
 	}
 };

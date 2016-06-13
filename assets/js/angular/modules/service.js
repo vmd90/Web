@@ -27,13 +27,22 @@ service_module.factory('Service', function ($http){
 		'get_follows': function(id){
 			return $http.post('/user/get_follows', {'id': id});
 		},
+		'update_user': function(old_info, updated_info) {
+			return $http.post('/user/update', {'old_info': old_info, 'updated_info': updated_info});
+		},
 		
 		//Serviços para posts
+		'get_tweets': function(user_id){
+			return $http.get('/tweet/get_tweets?user_id='+user_id);
+		},
 		'add_tweet': function(id, title, text){
 			return $http.post('/tweet/add_tweet', {'id': id, 'title': title, 'text': text});
 		},
 		'get_tweets_follows': function(id){
 			return $http.post('tweet/get_tweets_follows', {'id': id});
+		},
+		'update_tweet': function(id, updated_tweet) {
+			return $http.post('/tweet/update_tweet', {'id': id, 'updated_tweet': updated_tweet});
 		}
 		//Serviços para groups
 		

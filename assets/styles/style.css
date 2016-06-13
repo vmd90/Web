@@ -7,6 +7,10 @@ body {
 	margin: 20px 20px 100px 50px;
 }
 
+.panel {
+	box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.3);
+}
+
 /* Estilo da div Imagem Perfil*/
 #img-perfil img {
 	width: 170px;
@@ -48,6 +52,15 @@ body {
 	height: 90px;
 }
 
+/* Edit Tweet Modal */
+.modal-header, .modal-title, .close {
+	background-color: #bbb;
+	text-align: center;
+}
+.modal-footer {
+	background-color: #f9f9f9;
+}
+
 /*Estilo Div Login*/
 #div-login{
 	padding-top: 150px;
@@ -61,4 +74,8 @@ body {
 /*Estilo Div Perfil*/
 #div-perfil {
 	padding-bottom: 20px;
+}
+
+#div-perfil-edit-panel {
+	padding-bottom: 30px;
 }

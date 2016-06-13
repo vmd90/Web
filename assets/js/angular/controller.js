@@ -1,4 +1,4 @@
-var app_module = angular.module('app', ['ngRoute', 'app.login', 'app.index', 'app.service', 'app.perfil', 'app.cadastro']);
+var app_module = angular.module('app', ['ngRoute', 'app.login', 'app.index', 'app.service', 'app.perfil', 'app.cadastro', 'app.perfil-editar']);
 
 app_module.config(['$routeProvider',
 	function($routeProvider){
@@ -14,6 +14,9 @@ app_module.config(['$routeProvider',
 		}).when('/perfil.html', {
 			templateUrl: '/templates/perfil.html',
 			controller: 'perfilController'
+		}).when('/perfil-editar.html', {
+			templateUrl: '/templates/perfil-editar.html',
+			controller: 'perfilEditarController'
 		}).otherwise({
 			redirectTo: '/'
 		});

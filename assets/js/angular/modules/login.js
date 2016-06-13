@@ -1,11 +1,13 @@
 var login_module = angular.module('app.login', []);
 
 login_module.controller('loginController', function ($scope, Service) {
-	
 
 	$scope.login = function() {
 		var email = $scope.email;
 		var password = $scope.password;
+		//var email = 'vitor@usp.br';
+		//var password = 'vitor';
+
 
 		Service.login(email, password).then(
 			//Sucesso

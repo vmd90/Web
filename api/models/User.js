@@ -55,7 +55,7 @@ module.exports = {
 	},
 	groups: {
 		collection: 'group',
-		via: 'list'
+		via: 'users'
 	},
 	tweets: {
 		collection: 'tweet',

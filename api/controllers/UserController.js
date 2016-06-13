@@ -49,8 +49,32 @@ module.exports = {
 
 			return res.json(u);
 		});
-		
-	}
+	},
+
+	get_follows: function(req, res){
+		var id = req.param('id');
+
+		User.find({id: id})
+		.populate('follower').exec( function (erro, respon){
+			if(erro){
+				console.log('Erro na consulta de seguindo');
+			}
+			return res.json(respon[0].follower);
+		});
+	},
 	
+	get_groups: function (req, res){
+		
+		var user = req.param('id');
+		
+		User.find({id: user})
+		.populate('groups').exec( function (erro, respon){
+			if(erro){
+				console.log('Erro na consulta de grupos do usuario (GroupController)');
+			}
+			return res.json(respon[0].groups);
+		});
+
+	}
 };
 

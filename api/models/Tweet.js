@@ -8,12 +8,6 @@
 module.exports = {
 
   attributes: {
-	user: {
-		type: 'integer',
-		required: true,
-		notNull: true,
-		unique: false
-	},
   	tittle: {
 		type: 'string',
 		required: true,

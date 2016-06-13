@@ -8,20 +8,21 @@
 module.exports = {
 
   attributes: {
-  	id: {
-		type: 'integer',
-		primaryKey: true
-	},
-  	nome: {
+  	name: {
 		type: 'string',
 		required: true,
 		notNull: true,
 		unique: false
 	},
-	owner: {
-		model: 'user'
+	bio: {
+		type: 'text'
 	},
-	list: {
+	owner: {
+		model: 'user',
+		required: true,
+		notNull: true
+	},
+	users: {
 		collection: 'user',
 		via: 'groups'
 	}

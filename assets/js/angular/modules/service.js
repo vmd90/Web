@@ -21,18 +21,21 @@ service_module.factory('Service', function ($http){
 		'cadastrar': function(user){
 			return $http.post('/user/add_user', user);
 		},
+		'get_groups': function(id) {
+			return $http.post('/user/get_groups', {'id': id});
+		},
+		'get_follows': function(id){
+			return $http.post('/user/get_follows', {'id': id});
+		},
 		
 		//Serviços para posts
-		'get_posts': function(){
-			return $http.get('/post/show_posts');
-		},
-
 		'add_tweet': function(id, title, text){
 			return $http.post('/tweet/add_tweet', {'id': id, 'title': title, 'text': text});
+		},
+		'get_tweets_follows': function(id){
+			return $http.post('tweet/get_tweets_follows', {'id': id});
 		}
-		
-
 		//Serviços para groups
-
+		
 	}
 });

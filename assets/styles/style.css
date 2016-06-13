@@ -20,6 +20,16 @@ body {
 	text-align: center;
 }
 
+/* Estilo da div Menu-Seguindo*/
+#menu-seguindo {
+	display: inline-block;
+}
+#menu-seguindo img {
+	width: 51px;
+	height:69px;
+	border-radius: 6px;
+}
+
 /*Estilo Div Busca */
 
 /*Estilo Div Postar*/

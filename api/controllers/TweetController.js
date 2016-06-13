@@ -39,10 +39,10 @@ module.exports = {
 	},
 
 	update_tweet: function(req, res) {
-		var old_tweet = req.param('old_tweet');
+		var id = req.param('id');
 		var updated_tweet = req.param('updated_tweet');
 
-		Tweet.update(old_tweet, updated_tweet).exec(function(err, updated) {
+		Tweet.update(id, updated_tweet).exec(function(err, updated) {
             if (err) {
                 console.log(err);
                 return;

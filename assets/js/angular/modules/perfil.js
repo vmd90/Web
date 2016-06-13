@@ -49,13 +49,30 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 	}
 
 	// Exibe janela para editar tweet
-	$scope.show_tweet_edit_modal = function(index) {
-		angular.element('#edit-tweet-modal-'+index).modal('show');
+	$scope.show_tweet_edit_modal = function() {
+		angular.element('#edit-tweet-modal-'+this.$index).modal('show');
 	}
 	// Atualiza um tweet
 	$scope.update_tweet = function() {
-		var title = angular.element('#tweet-title').value;
-		var text = angular.element('#tweet-text').value;
-		
+		// esconde a janela modal
+		angular.element('#edit-tweet-modal-'+this.$index).modal('hide');
+
+		var updated_tweet = {
+			'title': this.tweet.title,
+			'text': this.tweet.text,
+			'updatedAt': new Date()
+		};
+
+		Service.update_tweet(this.tweet.id, updated_tweet).then(
+			// sucesso
+			function(res) {
+				// atualizar tweets na pagina
+				console.log("Sucesso no update: "+ res.data);
+			},
+			// erro
+			function(res) {
+				console.log("Erro ao atualizar tweet: "+res);
+			}
+		);
 	}
 });

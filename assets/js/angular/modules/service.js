@@ -33,8 +33,8 @@ service_module.factory('Service', function ($http){
 		'add_tweet': function(id, title, text){
 			return $http.post('/tweet/add_tweet', {'id': id, 'title': title, 'text': text});
 		},
-		'update_tweet': function(old_tweet, updated_tweet) {
-			return $http.post('/tweet/update_tweet', {'old_tweet': old_tweet, 'updated_tweet': updated_tweet});
+		'update_tweet': function(id, updated_tweet) {
+			return $http.post('/tweet/update_tweet', {'id': id, 'updated_tweet': updated_tweet});
 		}
 		
 

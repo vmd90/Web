@@ -7,6 +7,7 @@ index_module.controller('indexController', function ($scope, Service) {
 	if(!user){
 		window.location = "/";
 	}
+	$scope.user_id = user.id;
 	$scope.user_img = user.photo;
 	$scope.user_nome = user.name;
 	$scope.user_bio = user.bio;
@@ -64,10 +65,6 @@ index_module.controller('indexController', function ($scope, Service) {
 	);
 
 	//Links
-	$scope.perfil = function () {
-		window.location = "#/perfil.html";
-	},
-
 	$scope.postar = function () {
 		var title = $scope.tweet_title;
 		var text = $scope.tweet_text;

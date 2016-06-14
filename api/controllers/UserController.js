@@ -25,7 +25,7 @@ module.exports = {
 		});
 	},
 
-	get_user: function(req, res) {
+	find_user: function(req, res) {
 		var id = req.param('id');
 		User.findOne({'id': id}).exec(function callback(error, u){
 			if(error){

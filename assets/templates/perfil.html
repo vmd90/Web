@@ -9,19 +9,32 @@
 				<div class="row">
 					<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
 						<!--<img src="images/img.jpg"/>-->
-						<img ng-src="{{user_photo}}"/>
-						<h4><a href="">{{user_name}}</a></h4>
+						<img ng-src="images/{{user_img}}"/>
+						<h4><a href="#/perfil.html?id={{user_id}}">{{user_nome}}</a></h4>
 					</div>
 				</div>
 				<!-- Menu Grupos -->
 				<div class="row">
-					<div id="menu-grupos" class="col-sm-8 col-sm-offset-1">
-						<h3>Grupos</h3>
-						<ul>
-							<li>Grupo 1</li>
-							<li>Grupo 2</li>
-							<li>Grupo 3</li>
-						</ul>
+					<div id="menu-grupos" class="col-sm-10 col-sm-offset-1">
+						<h4>{{tittle_groups}}</h4>
+						<div ng-repeat="group in groups">
+							<a href="">{{group.name}}</a><br />
+						</div>
+						<div class="col-sm-1 col-sm-offset-11">
+							<a href="">mais...</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div id="menu-seguindo" class="col-sm-10 col-sm-offset-1">
+						<h4>{{tittle_follows}}</h4>
+						<div class="row">
+							<span ng-repeat="follow in follows" class="col-sm-4">
+									<span title="{{follow.name}}">
+										<a href="#/perfil.html?id={{follow.id}}"><img ng-src="images/{{follow.photo}}" /></a>
+									</span>
+							</span>
+						</div>
 						<div class="col-sm-1 col-sm-offset-11">
 							<a href="">mais...</a>
 						</div>
@@ -35,15 +48,15 @@
 				<!-- Busca -->
 				<section id="div-busca col-sm-12" class="row">
 					<div class="input-group">
-						<input type="text" class="form-control" ng-model="search.$" placeholder="Search tweets" aria-describedby="basic-addon1">
-						<span class="input-group-addon" id="basic-addon1">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						</span>
+  						<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+  						<span class="input-group-addon" id="basic-addon1">
+  							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+  						</span>
 					</div>
 				</section>
 				<hr/>
 				
-				<!-- Info Perfil -->
+				<!-- Infos -->
 				<!--<div class="row" ng-controller="editController">-->
 				<section class="row" id="div-perfil">
 					<div class="panel panel-default">
@@ -57,7 +70,7 @@
 										<div>Descrição: {{user_bio}}</div>
 									</div>
 									<!-- Botao de editar perfil -->
-									<div class="col-sm-1">
+									<div class="col-sm-1 {{edit_icon}}">
 										<button ng-click="perfil_edit()" type="button" class="btn btn-default" aria-label="Left Align">
 											<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 										</button>
@@ -67,62 +80,34 @@
 						</div>
 					</div>
 				</section>
+				<hr/>
 
 				<!-- Posts -->
 				<section id="div-posts" class="row">
 					<!-- Titulo Posts -->
-					<h3><small>Meus Tweets</small></h3>
-					<div id="div-tweet-list" class="col-sm-12">
+					<h3><small>Tweets</small></h3>
+					<div class="col-sm-12">
 						<!-- Posts -->
-						<!--<div ng-controller="postController" class="row">-->
-						<div class="row" ng-repeat="tweet in tweets | filter:search as results">
+						<div class="row" ng-repeat="tweet in tweets">
 							<div id="posts" class="panel panel-default">
 								<div class="panel-heading">
-									<b>{{tweet.title}}</b>
+									<b>{{tweet.tittle}}</b>
 								</div>
 								<div class="panel-body">
-									<div class="media">
-										<div class="media-left">
-											<img class="media-object" ng-src="{{user_photo}}">
-										</div>
-										<div class="media-body">
-											<div class="col-sm-11">
-												<p>{{tweet.text}}</p><br>
-												<p style="color: #777777"><small>{{user_name}} {{format_tweet_date(tweet.createdAt)}}</small></p>
-											</div>
-											<div class="col-sm-1">
-												<button id="button-edit-tweet" ng-click="show_tweet_edit_modal()" type="button" class="btn btn-default" aria-label="Left Align">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</button>
-											</div>
-										</div>
+									<div class="col-sm-2">
+										<img ng-src="images/{{tweet.photo}}">
+									</div>	
+									<div class="col-sm-9">
+										<p>{{tweet.text}}</p>
+										<p>{{tweet.name}}</p>
+									</div>
+									<div class="col-sm-1">
+										<button ng-click="editPost()" type="button" class="btn btn-default" aria-label="Left Align">
+				  							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+										</button>
 									</div>
 								</div>
 							</div>
-
-							<!--Edit tweet modal -->
-							<div class="modal fade" id="edit-tweet-modal-{{$index}}" role="dialog">
-								<div class="modal-dialog">
-								  <!-- Modal content-->
-								  <div class="modal-content">
-									<div class="modal-header">
-									  <button type="button" class="close" data-dismiss="modal">&times;</button>
-									  <input id="tweet-title" ng-model="tweets[$index].title" type="text" name="title" value="{{ tweet.title }}">
-									</div>
-									<div class="modal-body">
-									  <textarea id="tweet-text" ng-model="tweets[$index].text" rows="4" cols="50">{{ tweet.text }}</textarea>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<button type="button" ng-click="update_tweet()" class="btn btn-default">Atualizar</button>
-									</div>
-								  </div>
-								</div>
-							</div>
-						</div>
-						<!-- Nao encontra nada na busca -->
-						<div ng-if="results.length == 0">
-							<strong>Não encontrado.</strong>
 						</div>
 					</div>
 				</section>

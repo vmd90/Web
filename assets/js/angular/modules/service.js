@@ -3,14 +3,14 @@ var service_module = angular.module('app.service', []);
 service_module.factory('Service', function ($http){
 
 	var user;
-	
+
 	return {
 		//Serviços para user
-		'get_user': function(id){
+		'get_user': function(){
 			return this.user;
 		},
 		'find_user': function(id){
-			return $http.get('/user/get_user?id='+id);
+			return $http.post('/user/find_user', {'id': id});
 		},
 		'set_user': function (user){
 			this.user = user;
@@ -31,9 +31,9 @@ service_module.factory('Service', function ($http){
 			return $http.post('/user/update', {'old_info': old_info, 'updated_info': updated_info});
 		},
 		
-		//Serviços para posts
+		//Serviços para tweets
 		'get_tweets': function(user_id){
-			return $http.get('/tweet/get_tweets?user_id='+user_id);
+			return $http.post('/tweet/get_tweets', {id: user_id});
 		},
 		'add_tweet': function(id, title, text){
 			return $http.post('/tweet/add_tweet', {'id': id, 'title': title, 'text': text});
@@ -44,6 +44,7 @@ service_module.factory('Service', function ($http){
 		'update_tweet': function(id, updated_tweet) {
 			return $http.post('/tweet/update_tweet', {'id': id, 'updated_tweet': updated_tweet});
 		}
+		
 		//Serviços para groups
 		
 	}

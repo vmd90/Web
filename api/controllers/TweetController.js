@@ -20,7 +20,7 @@ module.exports = {
 				return;
 			}
 
-			console.log('Tweet adicionado com sucesso');
+			//console.log('Tweet adicionado com sucesso');
 
 			return res.json(tweet_created);
 		});
@@ -60,13 +60,12 @@ module.exports = {
 	},
 	
 	get_tweets: function (req, res) {
-		var user_id = req.param('user_id');
+		var user_id = req.param('id');
 		Tweet.find({'user': user_id}).exec(function(error, tweets) {
 			if (error) {
 				console.log("Erro: get_tweet()");
 				return;
 			}
-			console.log("Sucesso em buscar tweets");
 			return res.json(tweets);
 		});
 	},

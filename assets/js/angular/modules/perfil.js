@@ -1,29 +1,87 @@
-
 var perfil_module = angular.module('app.perfil', []);
 
-/*index_module.factory('Service', function ($http){
-	
-	return {
-		'get_user': function(id){
-			return $http.get('/user/get_user?id='+id);
-		},
-		'get_posts': function(){
-			return $http.get('/post/show_posts');
-		}
-	}
-});
-*/
 perfil_module.controller('perfilController', function ($scope, Service) {
-	//Recupera informações do usuario
+	
+	//Recebe usuario logado
 	var user = Service.get_user();
 	if(!user){
 		window.location = "/";
 	}
-	$scope.user_photo = user.photo;
-	$scope.user_name = user.name;
-	$scope.user_bio = user.bio;
-	$scope.user_birthday = user.birthday;
-	$scope.user_email = user.email;
+
+	//Recebe id do perfil
+	var url = window.location.href;
+	var param = url.split("=");
+	var id = param[1];
+	
+	//Recupera informações do perfil
+	Service.find_user(id).then(
+		//OK
+		function (res){
+			//Atualiza info do perfil
+			$scope.user_id = res.data.id;
+			$scope.user_img = res.data.photo;
+			$scope.user_nome = res.data.name;
+			$scope.user_bio = res.data.bio;
+			$scope.user_birthday = res.data.birthday;
+			$scope.user_email = res.data.email;
+			if(user.id == res.data.id){
+				$scope.edit_icon = 'show';
+				$scope.tittle_groups = 'Meus Grupos';
+				$scope.tittle_follows = 'Quem Sigo';
+			}else{
+				$scope.edit_icon = 'hidden';
+				$scope.tittle_groups = 'Grupos do ' +  res.data.name;
+				$scope.tittle_follows = 'Quem '+res.data.name+' Segue';
+			}
+
+			//Recupera grupos do usuario
+			Service.get_groups(res.data.id).then(
+				//OK
+				function (res){
+					$scope.groups = res.data;
+				},
+				//Erro
+				function (res){
+					console.log('Erro: perfil.find_user.get_groups');
+				}
+			);
+
+			//Recupera usuarios seguindo
+			Service.get_follows(res.data.id).then(
+				//OK
+				function (res){
+					$scope.follows = res.data;
+				},
+				//Erro
+				function (res){
+					console.log('Erro: perfil.find_user.get_follows');
+				}
+			);
+
+			//Recupera Tweets do usuario
+			Service.get_tweets(res.data.id).then(
+				//Sucesso
+				function (res) {
+					// Array de tweets
+					var tweets = res.data;
+					tweets.forEach( function (tweet, index_tweet){
+						tweets[index_tweet]['photo'] = $scope.user_img;
+						tweets[index_tweet]['name'] = $scope.user_nome;
+					});
+					$scope.tweets = tweets;
+					//$scope.tweets = res.data;
+				},
+				//Erro
+				function (res) {
+					console.log('Erro ao carregar tweets');
+				}
+			);
+		},
+		//Erro
+		function (res){
+			console.log('Erro: perfil.Service.find(user)');
+		}
+	);	
 
 	$scope.tweets = [];
 	$scope.format_tweet_date = function(date) {
@@ -31,18 +89,6 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 		return d.toLocaleString();
 	}
 
-	//Recupera posts do usuário
-	Service.get_tweets(user.id).then(
-		//Sucesso
-		function (res) {
-			// Array de tweets
-			$scope.tweets = res.data;
-		},
-		//Erro
-		function (res) {
-			console.log('Erro ao carregar tweets');
-		}
-	);
 
 	$scope.perfil_edit = function () {
 		window.location = "#/perfil-editar.html";

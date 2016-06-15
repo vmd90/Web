@@ -46,7 +46,7 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 				}
 			);
 
-			//Recupera usuarios seguindo
+			//Recupera quem o usuario segue
 			Service.get_follows(res.data.id).then(
 				//OK
 				function (res){

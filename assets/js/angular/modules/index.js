@@ -66,21 +66,46 @@ index_module.controller('indexController', function ($scope, Service) {
 
 	//Links
 	$scope.postar = function () {
-		var title = $scope.tweet_title;
+		var tittle = $scope.tweet_title;
 		var text = $scope.tweet_text;
 		var id = user.id
-		Service.add_tweet(id, title, text).then(
+
+		var tweet = {
+			tittle: tittle,
+			text: text,
+			user: id,
+			themes: [],
+			users: []
+		}
+
+		//Recupera temas por #
+		var string = text.split('#');
+		string.forEach( function (str, index){
+			if(index != 0){
+				var s = str.split(/[,!?;: ]/);
+				if(s[0]!="")
+					tweet.themes.push(s[0]);
+			}
+		});
+
+		//Recupera usuarios
+		string = text.split("@");
+		string.forEach( function (str, index){
+			if(index != 0){
+				var s = str.split(/[,!?;: ]/);
+				if(s[0]!="")
+					tweet.users.push(s[0]);
+			}
+		});		
+
+		//console.log(tweet);
+		Service.add_tweet(tweet).then(
 			//Sucesso
 			function (res) {
-				console.log(res);
-				$scope.tweet_title = '';
-				$scope.tweet_text = '';
+				$scope.tweets.push(res.data);
 			},
 			//Erro
 			function (res) {
-				console.log('Erro: index.js - postar().');
-				$scope.tweet_title = '';
-				$scope.tweet_text = '';
 			}
 		);
 	},

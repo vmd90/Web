@@ -8,17 +8,10 @@
 module.exports = {
 
   attributes: {
-	user: {
-		type: 'integer',
-		required: true,
-		notNull: true,
-		unique: false
-	},
   	tittle: {
 		type: 'string',
 		required: true,
-		notNull: true,
-		unique: true
+		notNull: true
 	},
 	text: {
 		type: 'text',
@@ -34,6 +27,10 @@ module.exports = {
 	shared: {
 		collection: 'user',
 		via: 'shared'
+	},
+	groups: {
+		collection: 'group',
+		via: 'tweets'
 	},
 	reacted: {
 		collection: 'user',

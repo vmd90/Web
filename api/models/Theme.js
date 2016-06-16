@@ -8,10 +8,6 @@
 module.exports = {
 
   attributes: {
-  	id: {
-  		type: 'integer',
-  		primaryKey: true
-	},
 	theme: {
 		type: 'string',
 		required: true,

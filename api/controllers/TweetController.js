@@ -8,22 +8,90 @@
 module.exports = {
 	
 	add_tweet: function (req, res) {
-		var tweet = {
-			'user': req.param('id'),
-			'title': req.param('title'),
-			'text': req.param('text')
-		};
 		
-		Tweet.create(tweet).exec( function callback(error, tweet_created){
-			if(error){
-				console.log('Error: add_tweet(): erro na inserção');
-				return;
-			}
+		var tweet = req.param('tweet');
+		var t = {
+			'tittle': tweet.tittle,
+			'text': tweet.text,
+			'user': tweet.user
+		}
+		
+		//Cria tweet
+		Tweet.create(t).exec(function callback(error, tweet_created){
+			if(error){ console.log('Erro ao crair tweet');}
 
-			//console.log('Tweet adicionado com sucesso');
+			//Para cada user/group adiciona Tweet
+			var users = tweet.users;
+			users.forEach( function(user, index){
+				//Tenta procurar nos Usuarios
+				User.findOne({'name': user})
+				.populate('shared')
+				.exec( function outer_callback (erro, user_found){
+					if(erro){
+						console.log('Erro: add_tweet.find_user');
+					}
+					if (user_found){//Se usuario encontrado
+						//console.log(user_found.name);
+						user_found.shared.add(tweet_created.id);
 
+						user_found.save(function inner_callback(error){
+							if(error) {console.log(error);}
+						});
+					}
+				});
+
+				//Tenta procurar nos grupos
+				Group.findOne({'name': user})
+				.populate('tweets')
+				.exec( function outer_callback(erro, group_found){
+					if(erro){
+						console.log('Erro: add_tweet.find_group');
+					}
+					if (group_found){//Se usuario encontrado
+						//console.log(u.id);
+						group_found.tweets.add(tweet_created.id);
+
+						group_found.save(function inner_callback(error){
+							if(error) {console.log(error);}
+						});
+					}
+				});
+			}); //FIM ADD USERS
+
+			//Add themes do tweet
+			var themes = tweet.themes;
+			themes.forEach( function (theme, index){
+
+				//Verifica se theme existe
+				Theme.findOne({'theme': theme})
+				.populate('tweets')
+				.exec( function outer_callback(erro, theme_found){
+					if(erro){console.log(erro);}
+					
+					if (theme_found){//Se theme encontrado
+						//console.log(u.id);
+						theme_found.tweets.add(tweet_created.id);
+
+						theme_found.save(function inner_callback(error){
+							if(error) {console.log(error);}
+						});
+					}else{
+						//Recupera tweet
+						Tweet.findOne({'id': tweet_created.id})
+						.populate('themes')
+						.exec( function outer_callback(error, tweet_found2){
+							var th = {'theme': theme}
+							tweet_found2.themes.add(th);
+							tweet_found2.save(function inner_callback(erro){
+								if(erro) {console.log(erro);}
+							});
+						});
+
+					}
+				});
+			});
 			return res.json(tweet_created);
-		});
+		});	
 	},
 
 	get_tweets_follows: function (req, res){

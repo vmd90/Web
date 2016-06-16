@@ -25,6 +25,10 @@ module.exports = {
 	users: {
 		collection: 'user',
 		via: 'groups'
+	},
+	tweets:{
+		collection: 'tweet',
+		via: 'groups'
 	}
   }
 };

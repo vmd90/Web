@@ -35,8 +35,8 @@ service_module.factory('Service', function ($http){
 		'get_tweets': function(user_id){
 			return $http.post('/tweet/get_tweets', {id: user_id});
 		},
-		'add_tweet': function(id, title, text){
-			return $http.post('/tweet/add_tweet', {'id': id, 'title': title, 'text': text});
+		'add_tweet': function(tweet){
+			return $http.post('/tweet/add_tweet', {'tweet': tweet});
 		},
 		'get_tweets_follows': function(id){
 			return $http.post('tweet/get_tweets_follows', {'id': id});

@@ -30,6 +30,12 @@ service_module.factory('Service', function ($http){
 		'update_user': function(old_info, updated_info) {
 			return $http.post('/user/update', {'old_info': old_info, 'updated_info': updated_info});
 		},
+		'unfollow': function(data){
+			return $http.post('/user/unfollow', {'data': data});
+		},
+		'follow': function(data){
+			return $http.post('/user/follow', {'data': data});
+		},
 		
 		//Serviços para tweets
 		'get_tweets': function(user_id){

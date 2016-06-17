@@ -89,7 +89,32 @@ module.exports = {
 
             return res.json(updated);
         });
+	},
 
+	//Funcao para deixar de seguir alguem
+	unfollow: function(req, res){
+		var user_id = req.param('data').user;
+		var follow_id = req.param('data').id;
+		User.findOne(user_id).exec(function callback(erro, user){
+			if(erro) { console.log('Erro ao recuperar user na funcao unfollow');}
+			user.follower.remove(follow_id);
+			user.save(function (erro){});
+		});
+		return res.json();
+	},
+
+	//Funcao para seguir alguem
+	follow: function(req, res){
+		var user_id = req.param('data').user;
+		var follow_id = req.param('data').id;
+		User.findOne(user_id).exec(function callback(erro, user){
+			if(erro) { console.log('Erro ao recuperar user na funcao unfollow');}
+			user.follower.add(follow_id);
+			user.save(function (erro){});
+		});
+		return res.json();	
 	}
+
+
 };
 

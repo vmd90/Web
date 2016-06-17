@@ -28,6 +28,8 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 				$scope.edit_icon = 'show';
 				$scope.tittle_groups = 'Meus Grupos';
 				$scope.tittle_follows = 'Quem Sigo';
+				$scope.follow_icon = 'hidden';
+				$scope.unfollow_icon = 'hidden';
 			}else{
 				$scope.edit_icon = 'hidden';
 				$scope.tittle_groups = 'Grupos do ' +  res.data.name;
@@ -58,6 +60,28 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 				}
 			);
 
+			//Recupera quem sigo
+			Service.get_follows(user.id).then(
+				//OK
+				function (res){
+					//$scope.follows = res.data;
+					var contem = 0;
+					res.data.forEach(function (u, index){
+						if(u.id == id) contem=1;
+					});
+					if(contem){
+						$scope.follow_icon = 'hidden';
+					}else{
+						$scope.unfollow_icon = 'hidden';
+					}
+				},
+				//Erro
+				function (res){
+					console.log('Erro: perfil.find_user.get_follows');
+				}
+			);
+
+
 			//Recupera Tweets do usuario
 			Service.get_tweets(res.data.id).then(
 				//Sucesso
@@ -82,6 +106,32 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 			console.log('Erro: perfil.Service.find(user)');
 		}
 	);	
+
+	
+
+	$scope.follow = function (){
+		Service.follow({'user': user.id, 'id': id}).then(
+			//ok
+			function (res){
+				window.location = window.location.href+'#';
+			},
+			//erro
+			function (res){
+			}
+		);
+	}
+
+	$scope.unfollow = function (){
+		Service.unfollow({'user': user.id, 'id': id}).then(
+			//ok
+			function (res){
+				window.location = window.location.href+'#';
+			},
+			//erro
+			function (res){
+			}
+		);
+	}
 
 	$scope.tweets = [];
 	$scope.format_tweet_date = function(date) {

@@ -55,7 +55,12 @@ index_module.controller('indexController', function ($scope, Service) {
 						tweets[index_tweet]['name'] = user.name;
 					}//Senao coloca foto padrao
 				});
+				var date = new Date(tweet.createdAt);
+				var f_date = date.getDate().toString() + '/' + (date.getMonth()+1).toString() + '/' + date.getFullYear()
+				+' as ' +date.getHours().toString() + ':' +date.getMinutes().toString();
+				tweets[index_tweet]['date'] = f_date;
 			});
+			tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});
 			$scope.tweets = res.data;
 		},
 		//Erro
@@ -102,7 +107,15 @@ index_module.controller('indexController', function ($scope, Service) {
 		Service.add_tweet(tweet).then(
 			//Sucesso
 			function (res) {
-				$scope.tweets.push(res.data);
+				var t = res.data;
+				t['photo'] = user.photo;
+				t['name'] = user.name;
+				var date = new Date(t.createdAt);
+				var f_date = date.getDate().toString() + '/' + (date.getMonth()+1).toString() + '/' + date.getFullYear()
+				+' as ' +date.getHours().toString() + ':' +date.getMinutes().toString();
+				t['date'] = f_date;
+				$scope.tweets.push(t);
+				$scope.tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});	
 			},
 			//Erro
 			function (res) {

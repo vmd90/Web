@@ -3,31 +3,44 @@
 	<div class="row">
 
 		<!-- Frame 1 -->
-		<aside class="col-sm-2">
-			<!-- Imagem -->
-			<div class="row">
-				<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
-					<!--<img src="images/img.jpg"/>-->
-					<img ng-src="{{user_img}}"/>
-					<h4><a href="" ng-click="perfil()">{{user_nome}}</a></h4>
-				</div>
-			</div>
-			<!-- Menu Grupos -->
-			<div class="row">
-				<div id="menu-grupos" class="col-sm-8 col-sm-offset-1">
-					<h3>Grupos</h3>
-					<ul>
-						<li>Grupo 1</li>
-						<li>Grupo 2</li>
-						<li>Grupo 3</li>
-					</ul>
-					<div class="col-sm-1 col-sm-offset-11">
-						<a href="">mais...</a>
+			<aside class="col-sm-2">
+				<!-- Imagem -->
+				<div class="row">
+					<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
+						<!--<img src="images/img.jpg"/>-->
+						<img ng-src="images/{{user_img}}"/>
+						<h4><a href="#/perfil.html?id={{user_id}}">{{user_nome}}</a></h4>
 					</div>
 				</div>
-			</div>
-		</aside>
-		<!-- FIM FRAME 1 -->
+				<!-- Menu Grupos -->
+				<div class="row">
+					<div id="menu-grupos" class="col-sm-10 col-sm-offset-1">
+						<h4>Meus Grupos</h4>
+						<div ng-repeat="group in groups">
+							<a href="">{{group.name}}</a><br />
+						</div>
+						<div class="col-sm-1 col-sm-offset-11">
+							<a href="#/grupos.html">mais...</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div id="menu-seguindo" class="col-sm-10 col-sm-offset-1">
+						<h4>Seguindo</h4>
+						<div class="row">
+							<span ng-repeat="follow in follows" class="col-sm-4">
+									<span title="{{follow.name}}">
+										<a href="#/perfil.html?id={{follow.id}}"><img ng-src="images/{{follow.photo}}" /></a>
+									</span>
+							</span>
+						</div>
+						<div class="col-sm-1 col-sm-offset-11">
+							<a href="">mais...</a>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!-- FIM FRAME 1 -->
 
 		<!-- Frame 2 -->
 		<article class="col-sm-8 col-sm-offset-1">
@@ -42,20 +55,39 @@
 			</section>
 			<hr/>
 
-			<!-- Membros -->
-			<section class="main-container container-fluid">
-				<div id="membros" class="panel panel-default">
-					<div class="panel-heading col-md-12">
-						<label class="col-md-offset-0">Grupos</label>
-						<button type="button" class="btn btn-default col-md-offset-10">
-							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</button>
+			<!-- criar grupo -->
+			<!-- MUDAR PARA RECEBER UM NOME E UMA DESCRICAO -->
+			<section id="div-criar-group col-sm-12" class="row">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Novo grupo" aria-describedby="basic-addon1">
+					<span class="input-group-addon" id="basic-addon1">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="addGrupo()"></span>
+					</span>
+				</div>
+			</section>
+			<hr/>
+
+			<!-- Meus Grupos -->
+			<section class="row">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<label>Meus grupos</label>
 					</div>
-					<div class="panel-body">
-						{{grupos}}
-					</div>
+					<ul class="list-group" ng-repeat="group in my_groups">
+					    <li class="list-group-item">
+					    	<div class="row">
+					    		<div class="col-sm-8">
+					    			<a href="">{{group.name}}</a>
+					    		</div>
+					    		<div class="col-sm-offset-3 col-sm-1">
+					    			<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeGrupo()"></span>
+					    		</div>
+					    	</div>
+					    </li>
+					</ul>
 			</section>
 		</article>
 		<!-- FIM FRAME 2 -->
+
 	</div>
 </div>

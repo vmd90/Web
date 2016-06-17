@@ -21,9 +21,6 @@ service_module.factory('Service', function ($http){
 		'cadastrar': function(user){
 			return $http.post('/user/add_user', user);
 		},
-		'get_groups': function(id) {
-			return $http.post('/user/get_groups', {'id': id});
-		},
 		'get_follows': function(id){
 			return $http.post('/user/get_follows', {'id': id});
 		},
@@ -52,9 +49,21 @@ service_module.factory('Service', function ($http){
 		},
 		'remove_tweet': function(id){
 			return $http.post('/tweet/remove_tweet', {'id': id});
-		}
+		},
 		
 		//Serviços para groups
+		'get_groups': function(id) {
+			return $http.post('/user/get_groups', {'id': id});
+		},
+		'get_group_users': function(id){
+			return $http.post('/group/get_group_users', {'id': id});
+		},
+		'get_groups_owner': function(id){
+			return $http.post('/group/get_groups_owner', {'id': id});
+		},
+		'get_group_tweets': function(id){
+			return $http.post('/group/get_group_tweets', {'id': id});
+		}
 		
 	}
 });

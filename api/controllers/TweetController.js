@@ -134,7 +134,7 @@ module.exports = {
 			});
 		});
 	},
-	
+
 	get_tweets: function (req, res) {
 		var user_id = req.param('id');
 		Tweet.find({'user': user_id}).exec(function(error, tweets) {

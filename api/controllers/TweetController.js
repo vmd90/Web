@@ -94,6 +94,15 @@ module.exports = {
 		});	
 	},
 
+	remove_tweet: function(req, res) {
+		var id = req.param('id');
+
+		Tweet.destroy(id).exec(function (err){
+			if(err){ console.log('Erro ao remover tweet');}
+			return res.json();
+		});
+	},
+
 	get_tweets_follows: function (req, res){
 		
 		var id = req.param('id');

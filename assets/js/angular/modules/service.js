@@ -49,6 +49,9 @@ service_module.factory('Service', function ($http){
 		},
 		'update_tweet': function(id, updated_tweet) {
 			return $http.post('/tweet/update_tweet', {'id': id, 'updated_tweet': updated_tweet});
+		},
+		'remove_tweet': function(id){
+			return $http.post('/tweet/remove_tweet', {'id': id});
 		}
 		
 		//Serviços para groups

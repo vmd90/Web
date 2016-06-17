@@ -130,4 +130,17 @@ index_module.controller('indexController', function ($scope, Service) {
 		$scope.tweet_title = '';
 		$scope.tweet_text = '';
 	}
+
+	$scope.removeTweet = function(tweet){
+		Service.remove_tweet(tweet.id).then(
+			//ok
+			function (res){
+				window.location = window.location.href+'#';
+			},
+			//erro
+			function (res){
+
+			}
+		);
+	}
 });

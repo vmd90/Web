@@ -10,9 +10,6 @@ grupos_module.controller('gruposController', function ($scope, Service) {
 	$scope.user_id = user.id;
 	$scope.user_img = user.photo;
 	$scope.user_nome = user.name;
-	$scope.user_bio = user.bio;
-	$scope.user_birthday = user.birthday;
-	$scope.user_email = user.email;
 
 	//Recupera grupos do usuário
 	Service.get_groups(user.id).then(
@@ -38,8 +35,9 @@ grupos_module.controller('gruposController', function ($scope, Service) {
 		}
 	)
 
+	//Recupera grupos criados pelo usuario
 	Service.get_groups_owner(user.id).then(
-	//ok
+		//ok
 		function (res){
 			$scope.my_groups = res.data;
 		},
@@ -50,8 +48,41 @@ grupos_module.controller('gruposController', function ($scope, Service) {
 	)
 
 	$scope.addGrupo = function () {
+		group = {
+			'name': $scope.group_name,
+			'bio': $scope.group_bio,
+			'owner': user.id
+		};
+
+		Service.add_group(group).then(
+			//ok
+			function (res){
+				$scope.my_groups.push(res.data);
+				$scope.groups.push(res.data);
+			},
+			//erro
+			function (res){
+				console.log('Erro ao recuperar grupos criado pelo usuario');
+			}
+		);
 	}
 
-	$scope.removeGrupo = function () {
+	$scope.removeGrupo = function (group) {
+		Service.remove_group(group.id).then(
+			//ok
+			function (res){
+				$scope.my_groups.splice($scope.my_groups.indexOf(group.id), 1);
+				$scope.groups.splice($scope.groups.indexOf(group.id), 1);
+			},
+			//erro
+			function (res){
+				console.log('Erro ao recuperar grupos criado pelo usuario');
+			}
+		);
 	}
+
+	$scope.cancelar = function () {
+		$scope.group_name = "";
+		$scope.group_bio = "";
+	}	
 });

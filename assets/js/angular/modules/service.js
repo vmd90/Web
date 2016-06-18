@@ -12,6 +12,9 @@ service_module.factory('Service', function ($http){
 		'find_user': function(id){
 			return $http.post('/user/find_user', {'id': id});
 		},
+		'find_user_name': function(name){
+			return $http.post('/user/find_user_name', {'name': name});
+		},
 		'set_user': function (user){
 			this.user = user;
 		},
@@ -63,6 +66,18 @@ service_module.factory('Service', function ($http){
 		},
 		'get_group_tweets': function(id){
 			return $http.post('/group/get_group_tweets', {'id': id});
+		},
+		'add_group': function(group){
+			return $http.post('/group/add_group', {'group': group});
+		},
+		'remove_group': function(id){
+			return $http.post('/group/remove_group', {'id': id});
+		},
+		'add_user_group': function(dados){
+			return $http.post('/group/add_user_group', {'dados': dados});
+		},
+		'remove_user_group': function(dados){
+			return $http.post('/group/remove_user_group', {'dados': dados});
 		}
 		
 	}

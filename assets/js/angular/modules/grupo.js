@@ -7,6 +7,8 @@ grupo_module.controller('grupoController', function ($scope, Service) {
 		window.location = "/";
 	}
 	$scope.user_id = user.id;
+	$scope.user_img = user.photo;
+	$scope.user_nome = user.name;
 
 	//Recebe id do grupo
 	var url = window.location.href;
@@ -23,7 +25,7 @@ grupo_module.controller('grupoController', function ($scope, Service) {
 		function (res){
 			console.log('Erro ao recuperar grupos');
 		}
-	)
+	);
 
 	//Recupera lista de usuarios seguindo
 	Service.get_follows(user.id).then(
@@ -35,7 +37,7 @@ grupo_module.controller('grupoController', function ($scope, Service) {
 		function (respon){
 			console.log('Erro ao recuperar usuario seguindo');
 		}
-	)
+	);
 
 	//Recupera usuarios no grupo
 	Service.get_group_users(group_id).then(
@@ -44,20 +46,22 @@ grupo_module.controller('grupoController', function ($scope, Service) {
 			$scope.group_name = res.data.name;
 			$scope.group_bio = res.data.bio;
 			$scope.group_users = res.data.users;
+			if(res.data.owner != user.id){
+				$scope.remove_icon = 'hidden';
+				$scope.div_add = 'hidden';
+			}
 		},
 		//erro
 		function (res){
 		}
-	)
+	);
 
 	//Recupera Tweets do grupo
 	Service.get_group_tweets(group_id).then(
 		//ok
 		function (res){
 			var tweets = res.data;
-			console.log(tweets);
 			tweets.forEach( function (tweet, index_tweet){
-				console.log(index_tweet);
 				if(tweet.user == user.id){
 					tweets[index_tweet]['photo'] = user.photo;
 					tweets[index_tweet]['name'] = user.name;
@@ -88,7 +92,6 @@ grupo_module.controller('grupoController', function ($scope, Service) {
 				tweet['date'] = f_date;
 				tweets[index_tweet] = tweet;
 			});
-			console.log(tweets);
 			tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});
 			$scope.group_tweets = tweets;
 		},
@@ -96,5 +99,53 @@ grupo_module.controller('grupoController', function ($scope, Service) {
 		function (res){
 		}
 	);
+
+	$scope.addUser = function (){
+		//Verifica se usuario existe
+		Service.find_user_name($scope.user_name).then(
+			//OK
+			function (res) {
+				if(res.data){//Usuario encontrado, adiciona no grupo
+					var dados = {
+						'user': res.data.id,
+						'group_id': group_id
+					};
+					Service.add_user_group(dados).then(
+						//OK
+						function (res2) {
+							$scope.group_users.push(res.data);
+						},
+						//Erro
+						function (res2){
+							console.log('Erro ao adicionar usuario ao grupo');
+						}
+					);
+				}else{//Usuario nao existe
+					alert('Usuario nao encontrado');
+				}
+			},
+			//Erro
+			function (res){
+				console.log('Erro ao recuperar usuario por nome');
+			}
+		);
+	},
+
+	$scope.removeUser = function (u){
+		var dados = {
+			'group_id': group_id,
+			'user': u.id
+		};
+		Service.remove_user_group(dados).then(
+			//ok
+			function (res){
+				$scope.group_users.splice($scope.group_users.indexOf(u.id), 1);
+			},
+			//Erro
+			function (res){
+				console.log('Erro ao remover usuario do grupo');
+			}
+		)
+	}
 
 });

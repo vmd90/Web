@@ -1,4 +1,4 @@
-<div class="main-container container-fluid" ng-controller="indexController">
+<div class="main-container container-fluid" ng-controller="gruposController">
 	<!-- Pagina Perfil -->
 	<div class="row">
 
@@ -17,7 +17,7 @@
 					<div id="menu-grupos" class="col-sm-10 col-sm-offset-1">
 						<h4>Meus Grupos</h4>
 						<div ng-repeat="group in groups">
-							<a href="">{{group.name}}</a><br />
+							<a href="#/grupo.html?id={{group.id}}">{{group.name}}</a><br />
 						</div>
 						<div class="col-sm-1 col-sm-offset-11">
 							<a href="#/grupos.html">mais...</a>
@@ -56,14 +56,13 @@
 			<hr/>
 
 			<!-- criar grupo -->
-			<!-- MUDAR PARA RECEBER UM NOME E UMA DESCRICAO -->
-			<section id="div-criar-group col-sm-12" class="row">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Novo grupo" aria-describedby="basic-addon1">
-					<span class="input-group-addon" id="basic-addon1">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="addGrupo()"></span>
-					</span>
-				</div>
+			<section id="div-group" class="row">
+				<form>
+					<input type="text" class="form-control" placeholder="Novo grupo" aria-describedby="basic-addon1" ng-model="group_name"><br />
+					<textarea id="post" placeholder="Descrição do grupo" cols="100" ng-model='group_bio'></textarea><br>
+					<button class="btn btn-default" type="button" title="Cancelar" ng-click="cancelar()">Cancelar</button>
+					<button class="btn btn-default" type="button" title="Criar" ng-click="addGrupo()">Criar</button>
+				</form>
 			</section>
 			<hr/>
 
@@ -77,10 +76,10 @@
 					    <li class="list-group-item">
 					    	<div class="row">
 					    		<div class="col-sm-8">
-					    			<a href="">{{group.name}}</a>
+					    			<a href="#/grupo.html?id={{group.id}}">{{group.name}}</a>
 					    		</div>
 					    		<div class="col-sm-offset-3 col-sm-1">
-					    			<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeGrupo()"></span>
+					    			<span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeGrupo(group)"></span>
 					    		</div>
 					    	</div>
 					    </li>

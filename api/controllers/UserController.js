@@ -36,6 +36,16 @@ module.exports = {
 		});
 	},
 
+	find_user_name: function(req, res) {
+		var name = req.param('name');
+		User.findOne({'name': name}).exec(function callback(error, u){
+			if(error){
+				console.log('Erro durante a consulta de usuario');
+			}
+			return res.json(u);
+		});
+	},
+
 	login: function(req, res){
 		var email = req.param('email');
 		var password = req.param('password');

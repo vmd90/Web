@@ -89,11 +89,21 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 					// Array de tweets
 					var tweets = res.data;
 					tweets.forEach( function (tweet, index_tweet){
+						if(user.id != tweet.user){
+							tweets[index_tweet]['remove_icon'] = 'hidden';	
+						}
 						tweets[index_tweet]['photo'] = $scope.user_img;
 						tweets[index_tweet]['name'] = $scope.user_nome;
+						var date = new Date(tweet.createdAt);
+						var f_date = date.getDate().toString() + '/' + (date.getMonth()+1).toString() + '/' + date.getFullYear()
+						+' as ' +date.getHours().toString() + ':';
+						if(date.getMinutes()<10)
+							f_date+='0';
+						f_date+=date.getMinutes().toString();
+						tweets[index_tweet]['date'] = f_date;
 					});
+					tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});
 					$scope.tweets = tweets;
-					//$scope.tweets = res.data;
 				},
 				//Erro
 				function (res) {
@@ -131,23 +141,35 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 			function (res){
 			}
 		);
-	}
+	},
+
+	$scope.removeTweet = function(tweet){
+		Service.remove_tweet(tweet.id).then(
+			//ok
+			function (res){
+				window.location = window.location.href+'#';
+			},
+			//erro
+			function (res){
+			}
+		);
+	},
 
 	$scope.tweets = [];
 	$scope.format_tweet_date = function(date) {
 		var d = new Date(date);
 		return d.toLocaleString();
-	}
+	},
 
 
 	$scope.perfil_edit = function () {
 		window.location = "#/perfil-editar.html";
-	}
+	},
 
 	// Exibe janela para editar tweet
 	$scope.show_tweet_edit_modal = function() {
 		angular.element('#edit-tweet-modal-'+this.$index).modal('show');
-	}
+	},
 	// Atualiza um tweet
 	$scope.update_tweet = function() {
 		// esconde a janela modal

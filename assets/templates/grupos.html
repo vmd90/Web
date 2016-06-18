@@ -1,4 +1,25 @@
 <div class="main-container container-fluid" ng-controller="gruposController">
+	<!-- HEADER-->
+	<div class="row">
+		<nav class="navbar navbar-default">
+			<div class="col-sm-2">
+			      <a class="navbar-brand" href="#/index.html">Posts Web</a>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+				    <div id="form_busca" class="input-group">
+  						<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+  						<span class="input-group-addon" id="basic-addon1">
+  							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+  						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<a class="navbar-brand" href="#">Log out</a>
+			</div>
+		</nav>
+	</div>
 	<!-- Pagina Perfil -->
 	<div class="row">
 
@@ -44,21 +65,11 @@
 
 		<!-- Frame 2 -->
 		<article class="col-sm-8 col-sm-offset-1">
-			<!-- Busca -->
-			<section id="div-busca col-sm-12" class="row">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
-					<span class="input-group-addon" id="basic-addon1">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					</span>
-				</div>
-			</section>
-			<hr/>
-
 			<!-- criar grupo -->
 			<section id="div-group" class="row">
+				<h3><small>Criar grupo</small></h3>
 				<form>
-					<input type="text" class="form-control" placeholder="Novo grupo" aria-describedby="basic-addon1" ng-model="group_name"><br />
+					<input type="text" class="form-control" placeholder="Nome do grupo" aria-describedby="basic-addon1" ng-model="group_name"><br />
 					<textarea id="post" placeholder="Descrição do grupo" cols="100" ng-model='group_bio'></textarea><br>
 					<button class="btn btn-default" type="button" title="Cancelar" ng-click="cancelar()">Cancelar</button>
 					<button class="btn btn-default" type="button" title="Criar" ng-click="addGrupo()">Criar</button>

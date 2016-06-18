@@ -1,8 +1,29 @@
 <div class="main-container container-fluid" ng-controller="indexController">
-		
-		<!-- Pagina Perfil -->
-		<div class="row">
+	<!-- HEADER-->
+	<div class="row">
+		<nav class="navbar navbar-default">
+			<div class="col-sm-2">
+			      <a class="navbar-brand" href="#/index.html">Posts Web</a>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+				    <div id="form_busca" class="input-group">
+						<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+						<span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<a class="navbar-brand" href="#">Log out</a>
+			</div>
+		</nav>
+	</div>
 
+
+	<!-- Pagina Perfil -->
+		<div class="row">
 			<!-- Frame 1 -->
 			<aside class="col-sm-2">
 				<!-- Imagem -->
@@ -44,20 +65,10 @@
 			<!-- FIM FRAME 1 -->
 
 			<!-- Frame 2 -->
-			<article class="col-sm-8 col-sm-offset-1">
-				<!-- Busca -->
-				<section id="div-busca col-sm-12" class="row">
-					<div class="input-group">
-  						<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
-  						<span class="input-group-addon" id="basic-addon1">
-  							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-  						</span>
-					</div>
-				</section>
-				<hr/>
-				
+			<article class="col-sm-8 col-sm-offset-1">			
 				<!-- Postar -->
 				<section id="div-post" class="row">
+					<h3><small>Novo Tweet</small></h3>
 					<form>
 						<input type="text" class="form-control" placeholder="Titulo" aria-describedby="basic-addon1" ng-model="tweet_title"><br />
 						<textarea id="post" placeholder="O que deseja postar?" cols="100" ng-model='tweet_text'></textarea><br>
@@ -80,11 +91,11 @@
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-2">
-										<img ng-src="images/{{tweet.photo}}">
+										<a href="#/perfil.html?id={{tweet.user}}"><img ng-src="images/{{tweet.photo}}"/></a>
 									</div>	
 									<div class="col-sm-9">
 										<p>{{tweet.text}}</p>
-										<p>{{tweet.name}}</p>
+										<p><a href="#/perfil.html?id={{tweet.user}}">{{tweet.name}}</a></p>
 									</div>
 									<div class="col-sm-1 {{tweet.remove_icon}}">
 										<button ng-click="removeTweet(tweet)" type="button" class="btn btn-default" aria-label="Left Align">

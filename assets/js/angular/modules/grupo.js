@@ -88,7 +88,10 @@ grupo_module.controller('grupoController', function ($scope, Service) {
 				}
 				var date = new Date(tweet.createdAt);
 				var f_date = date.getDate().toString() + '/' + (date.getMonth()+1).toString() + '/' + date.getFullYear()
-				+' as ' +date.getHours().toString() + ':' +date.getMinutes().toString();
+				+' as ' +date.getHours().toString() + ':';
+				if(date.getMinutes()<10)
+					f_date+='0';
+				f_date+=date.getMinutes().toString();
 				tweet['date'] = f_date;
 				tweets[index_tweet] = tweet;
 			});

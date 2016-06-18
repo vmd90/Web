@@ -1,4 +1,26 @@
 <div class="main-container container-fluid" ng-controller="grupoController">
+	<!-- HEADER-->
+	<div class="row">
+		<nav class="navbar navbar-default">
+			<div class="col-sm-2">
+			      <a class="navbar-brand" href="#/index.html">Posts Web</a>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+				    <div id="form_busca" class="input-group">
+						<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+						<span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<a class="navbar-brand" href="#">Log out</a>
+			</div>
+		</nav>
+	</div>
+
 	<!-- Pagina Perfil -->
 	<div class="row">
 
@@ -7,7 +29,6 @@
 				<!-- Imagem -->
 				<div class="row">
 					<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
-						<!--<img src="images/img.jpg"/>-->
 						<img ng-src="images/{{user_img}}"/>
 						<h4><a href="#/perfil.html?id={{user_id}}">{{user_nome}}</a></h4>
 					</div>
@@ -44,21 +65,11 @@
 
 		<!-- Frame 2 -->
 		<article class="col-sm-8 col-sm-offset-1">
-			<!-- Busca -->
-			<section id="div-busca col-sm-12" class="row">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
-					<span class="input-group-addon" id="basic-addon1">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					</span>
-				</div>
-			</section>
-			<hr/>
-
 			<!-- ADD User -->
 			<section id="div-criar-group" class="row {{div_add}}">
+				<h3><small>Adicionar usuario</small></h3>
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Adicionar usuario" aria-describedby="basic-addon1" ng-model="user_name">
+					<input type="text" class="form-control" placeholder="Usuario" aria-describedby="basic-addon1" ng-model="user_name">
 					<span class="input-group-addon" id="basic-addon1">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="addUser()"></span>
 					</span>
@@ -103,11 +114,11 @@
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-2">
-										<img ng-src="images/{{tweet.photo}}">
+										<a href="#/perfil.html?id={{tweet.user}}"><img ng-src="images/{{tweet.photo}}"></a>
 									</div>	
 									<div class="col-sm-9">
 										<p>{{tweet.text}}</p>
-										<p>{{tweet.name}}</p>
+										<p><a href="#/perfil.html?id={{tweet.user}}">{{tweet.name}}</a></p>
 									</div>
 									<div class="col-sm-1 {{tweet.remove_icon}}">
 										<button ng-click="removeTweet(tweet)" type="button" class="btn btn-default" aria-label="Left Align">

@@ -1,5 +1,24 @@
 <div class="main-container container-fluid" ng-controller="perfilController">
-		
+		<div class="row">
+			<nav class="navbar navbar-default">
+				<div class="col-sm-2">
+				      <a class="navbar-brand" href="#/index.html">Posts Web</a>
+				</div>
+				<div class="col-sm-8">
+					<div class="row">
+					    <div id="form_busca" class="input-group">
+	  						<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+	  						<span class="input-group-addon" id="basic-addon1">
+	  							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	  						</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<a class="navbar-brand" href="#">Log out</a>
+				</div>
+			</nav>
+		</div>
 		<!-- Pagina Perfil -->
 		<div class="row">
 
@@ -18,10 +37,10 @@
 					<div id="menu-grupos" class="col-sm-10 col-sm-offset-1">
 						<h4>{{tittle_groups}}</h4>
 						<div ng-repeat="group in groups">
-							<a href="">{{group.name}}</a><br />
+							<a href="#/grupo.html?id={{group.id}}">{{group.name}}</a><br />
 						</div>
 						<div class="col-sm-1 col-sm-offset-11">
-							<a href="">mais...</a>
+							<a href="#/grupos.html">mais...</a>
 						</div>
 					</div>
 				</div>
@@ -45,19 +64,7 @@
 
 			<!-- Frame 2 -->
 			<article class="col-sm-8 col-sm-offset-1">
-				<!-- Busca -->
-				<section id="div-busca col-sm-12" class="row">
-					<div class="input-group">
-  						<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
-  						<span class="input-group-addon" id="basic-addon1">
-  							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-  						</span>
-					</div>
-				</section>
-				<hr/>
-				
 				<!-- Infos -->
-				<!--<div class="row" ng-controller="editController">-->
 				<section class="row" id="div-perfil">
 					<div class="panel panel-default">
 						<div class="panel-body">
@@ -92,7 +99,6 @@
 				</section>
 				<hr/>
 
-				<!-- Posts -->
 				<section id="div-posts" class="row">
 					<!-- Titulo Posts -->
 					<h3><small>Tweets</small></h3>
@@ -101,19 +107,19 @@
 						<div class="row" ng-repeat="tweet in tweets">
 							<div id="posts" class="panel panel-default">
 								<div class="panel-heading">
-									<b>{{tweet.tittle}}</b>
+									<b>{{tweet.tittle}}</b> - {{tweet.date}}
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-2">
-										<img ng-src="images/{{tweet.photo}}">
+										<a href="#/perfil.html?id={{tweet.user}}"><img ng-src="images/{{tweet.photo}}"/></a>
 									</div>	
 									<div class="col-sm-9">
 										<p>{{tweet.text}}</p>
-										<p>{{tweet.name}}</p>
+										<p><a href="#/perfil.html?id={{tweet.user}}">{{tweet.name}}</a></p>
 									</div>
-									<div class="col-sm-1">
-										<button ng-click="editPost()" type="button" class="btn btn-default" aria-label="Left Align">
-				  							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									<div class="col-sm-1 {{tweet.remove_icon}}">
+										<button ng-click="removeTweet(tweet)" type="button" class="btn btn-default" aria-label="Left Align">
+				  							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</div>
 								</div>

@@ -51,6 +51,7 @@ index_module.controller('indexController', function ($scope, Service) {
 					tweets[index_tweet]['photo'] = user.photo;
 					tweets[index_tweet]['name'] = user.name;
 				}else{
+					tweets[index_tweet]['remove_icon'] = 'hidden';
 					$scope.follows.forEach( function (u, index){
 						if(tweet.user == u.id){
 							tweets[index_tweet]['photo'] = u.photo;
@@ -60,7 +61,10 @@ index_module.controller('indexController', function ($scope, Service) {
 				}
 				var date = new Date(tweet.createdAt);
 				var f_date = date.getDate().toString() + '/' + (date.getMonth()+1).toString() + '/' + date.getFullYear()
-				+' as ' +date.getHours().toString() + ':' +date.getMinutes().toString();
+				+' as ' +date.getHours().toString() + ':';
+				if(date.getMinutes()<10)
+					f_date+='0';
+				f_date+=date.getMinutes().toString();
 				tweets[index_tweet]['date'] = f_date;
 			});
 			tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});
@@ -115,7 +119,10 @@ index_module.controller('indexController', function ($scope, Service) {
 				t['name'] = user.name;
 				var date = new Date(t.createdAt);
 				var f_date = date.getDate().toString() + '/' + (date.getMonth()+1).toString() + '/' + date.getFullYear()
-				+' as ' +date.getHours().toString() + ':' +date.getMinutes().toString();
+				+' as ' +date.getHours().toString() + ':';
+				if(date.getMinutes()<10)
+					f_date+='0';
+				f_date+=date.getMinutes().toString();
 				t['date'] = f_date;
 				$scope.tweets.push(t);
 				$scope.tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});	
@@ -129,7 +136,7 @@ index_module.controller('indexController', function ($scope, Service) {
 	$scope.cancelar = function () {
 		$scope.tweet_title = '';
 		$scope.tweet_text = '';
-	}
+	},
 
 	$scope.removeTweet = function(tweet){
 		Service.remove_tweet(tweet.id).then(
@@ -142,5 +149,9 @@ index_module.controller('indexController', function ($scope, Service) {
 
 			}
 		);
+	},
+
+	$scope.home = function(){
+		window.location = "#/index.html";
 	}
 });

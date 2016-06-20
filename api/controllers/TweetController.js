@@ -158,7 +158,44 @@ module.exports = {
 
             return res.json(updated);
         });
-	}
+	},
 
+	get_top20: function(req, res){
+		var tweets = [];
+		var tweetAtual = "";
+		Tweet.query('select T.tittle, count(TS.tweet_shared)*2 influence, TR.user_reactions reaction, count(TR.user_reactions) from tweet T join tweet_reacted__user_reactions TR on T.id = TR.tweet_reacted join tweet_shared__user_shared TS on T.id = TS.tweet_shared group by T.tittle, TR.user_reactions order by T.tittle', function(error, list){
+			if(error){
+				console.log('Erro durante a busca. (TweetController.js)');
+			}
+			list.rows.forEach(function(row){
+				if(tweetAtual != row.tittle){
+					tweetAtual = row.tittle;
+					if(row.reaction == 1)
+						var influence = 2;
+					else if(row.reaction == 0)
+						var influence = 1;
+					else
+						var influence = 0;
+					influence += parseInt(row.influence);
+					tweets.push({"tittle": tweetAtual, "influence": influence});
+				}
+				else{
+					var influence = tweets[tweets.length-1].influence;
+					if(row.reaction == 1)
+						influence += 2;
+					else if(row.reaction == 0)
+						influence++;
+					influence += parseInt(row.influence);
+					tweets.pop();
+					tweets.push({"tittle": tweetAtual, "influence": influence});
+				}
+			});
+			var orderTweets = tweets.slice(0);
+			orderTweets.sort(function(a,b) {
+				return b.influence - a.influence;
+			});
+			return res.json(orderTweets);
+		});
+	}
 };
 

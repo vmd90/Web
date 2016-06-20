@@ -123,8 +123,35 @@ module.exports = {
 			user.save(function (erro){});
 		});
 		return res.json();	
+	},
+
+	top20user: function(req, res){
+		var users = {"id": [], "influence": []};
+		var count = 0;
+		User.find().exec(function callback(error, list){
+			if(error){
+				console.log('Erro durante a busca. (UserController.js)');
+			}
+			//para cada usuario calcula a influencia
+			list.forEach(function(user, index){
+				Tweet.find({user: user.id}).populate('shared').populate('reacted').exec(function callback(error, tweets){
+					tweets.forEach(function(tweet){
+						tweet.shared.forEach(function(){
+							count += 2;
+						});
+						tweet.reacted.forEach(function(){
+							count++;
+						});						
+					});
+					users.id.push(user.id);
+					users.influence.push(count);
+					count = 0;
+					if(index == 0){
+						return res.json(users);
+					}
+				});
+			});
+		});
 	}
-
-
 };
 

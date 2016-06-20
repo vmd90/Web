@@ -144,8 +144,75 @@ module.exports = {
 			});
 			return res.json(users);
 		});
+	},
+
+
+	top20user: function(req, res){
+		var users = {"id": [], "influence": []};
+		var count = 0;
+		User.find().exec(function callback(error, list){
+			if(error){
+				console.log('Erro durante a busca. (UserController.js)');
+			}
+			//para cada usuario calcula a influencia
+			list.forEach(function(user, index){
+				Tweet.find({user: user.id}).populate('shared').populate('reacted').exec(function callback(error, tweets){
+					tweets.forEach(function(tweet){
+						tweet.shared.forEach(function(){
+							count += 2;
+						});
+						tweet.reacted.forEach(function(){
+							count++;
+						});						
+					});
+					users.id.push(user.id);
+					users.influence.push(count);
+					count = 0;
+					if(index == 0){
+						return res.json(users);
+					}
+				});
+			});
+		});
+	},
+
+	top20userQuery: function(req, res){
+		var users = [];
+		var userAtual = "";
+		User.query('select U.name, TR.user_reactions reaction, TS.tweet_shared,COUNT(TR.user_reactions), COUNT(TS.user_shared)*2 Influence from "user" U join tweet T on U.id = T.user join tweet_reacted__user_reactions TR on T.id = TR.tweet_reacted join tweet_shared__user_shared TS on T.id = TS.tweet_shared group by U.name, TR.user_reactions, TS.tweet_shared order by U.name', function(error, list){
+			if(error){
+				console.log('Erro durante a busca. (UserController.js)');
+			}
+			list.rows.forEach(function(row){
+				if(userAtual != row.name){
+					userAtual = row.name;
+					if(row.reaction == 1)
+						var influence = 1;
+					else if(row.reaction == 0)
+						var influence = -1;
+					else
+						var influence = 0;
+					influence += parseInt(row.influence);
+					users.push({"name": userAtual, "influence": influence});
+				}
+				else{
+					var influence = users[users.length-1].influence;
+					if(row.reaction == 1)
+						influence++;
+					else if(row.reaction == 0)
+						influence--;
+					influence += parseInt(row.influence);
+					users.pop();
+					users.push({"name": userAtual, "influence": influence});
+				}
+			});
+			var orderUsers = users.slice(0);
+			orderUsers.sort(function(a,b) {
+				return b.influence - a.influence;
+			});
+			console.log(orderUsers);
+			return res.json(orderUsers);
+		});
 	}
-
-
 };
 

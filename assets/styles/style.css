@@ -59,6 +59,12 @@ body {
 	border-radius: 10px;
 }
 
+#div-result img{
+	width: 85px;
+	height: 115px;
+	border-radius: 10px;
+}
+
 /* Edit Tweet Modal */
 .modal-header, .modal-title, .close {
 	background-color: #bbb;

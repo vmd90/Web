@@ -78,6 +78,11 @@ service_module.factory('Service', function ($http){
 		},
 		'remove_user_group': function(dados){
 			return $http.post('/group/remove_user_group', {'dados': dados});
+		},
+
+		//Relatorios
+		'get_top20_usuarios': function(d1, d2){
+			return $http.post('/user/get_top20', {'ini': d1, 'fim': d2});	
 		}
 		
 	}

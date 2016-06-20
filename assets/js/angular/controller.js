@@ -1,5 +1,5 @@
 var app_module = angular.module('app', ['ngRoute', 'app.login', 'app.index', 'app.service', 'app.perfil',
-										 'app.cadastro', 'app.perfil-editar', 'app.grupos', 'app.grupo']);
+										 'app.cadastro', 'app.perfil-editar', 'app.grupos', 'app.grupo', 'app.relatorios']);
 
 app_module.config(['$routeProvider',
 	function($routeProvider){
@@ -24,6 +24,9 @@ app_module.config(['$routeProvider',
 		}).when('/grupo.html', {
 			templateUrl: '/templates/grupo.html',
 			controller: 'grupoController'
+		}).when('/relatorios.html', {
+			templateUrl: '/templates/relatorios.html',
+			controller: 'relatoriosController'
 		}).otherwise({
 			redirectTo: '/'
 		});

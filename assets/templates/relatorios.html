@@ -1,0 +1,57 @@
+<div class="main-container container-fluid" ng-controller="relatoriosController">
+
+	<div class="page-header">
+  		<h1>Relatorios</h1>
+	</div>
+
+	<div class="list-group">
+		<div ng-repeat="link in links">
+	  		<a href="" class="list-group-item" ng-click="show(link)">{{link.name}}</a>
+	  			<section class="row {{link.show}}" id="div-perfil">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-sm-11">
+										<div class="row">
+											<div class="col-sm-offset-1 col-sm-4">
+												<span>De</span>
+												<input type="date" class="form-control" aria-label="..." ng-model="link.data1">
+											</div>
+											<div class="col-sm-offset-1 col-sm-4">
+												<span> ate </span>
+												<input type="date" class="form-control" aria-label="..." ng-model="link.data2">
+											</div>
+											<div class="col-sm-offset-1 col-sm-1">
+												<button class="btn btn-default" type="button" title="Postar" ng-click="pesquisar(link)">Pesquisar</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+		</div>
+	</div>
+
+	<div class="row {{div_result}}">
+		<h3><small>Resultado</small></h3>
+		<div class="row" ng-repeat="result in results">
+			<div id="div-result" class="panel panel-default">
+				<div class="panel-heading">
+					<b>{{result.name}}</b>
+				</div>
+				<div class="panel-body">
+					<div class="col-sm-2">
+						<img ng-src="images/{{result.photo}}"/>
+					</div>	
+					<div class="col-sm-9">
+						<p>{{result.qtde}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

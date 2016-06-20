@@ -123,6 +123,27 @@ module.exports = {
 			user.save(function (erro){});
 		});
 		return res.json();	
+	},
+
+	//Get top20
+	get_top20: function(req, res){
+		//console.log(req.param('ini'));
+		//console.log(req.param('fim'));
+		var ini = req.param('ini');
+		var fim = req.param('fim');
+
+		User.find()
+		.populate('tweets', {
+			where: {
+				createdAt: { '>': ini},
+				createdAt: { '<': fim}
+			}
+		}).exec( function callback(erro, users){
+			users.sort(function(a, b){
+				return b.tweets.length - a.tweets.length;
+			});
+			return res.json(users);
+		});
 	}
 
 

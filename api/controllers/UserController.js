@@ -127,56 +127,6 @@ module.exports = {
 
 	//Get top20
 	get_top20: function(req, res){
-		//console.log(req.param('ini'));
-		//console.log(req.param('fim'));
-		var ini = req.param('ini');
-		var fim = req.param('fim');
-
-		User.find()
-		.populate('tweets', {
-			where: {
-				createdAt: { '>': ini},
-				createdAt: { '<': fim}
-			}
-		}).exec( function callback(erro, users){
-			users.sort(function(a, b){
-				return b.tweets.length - a.tweets.length;
-			});
-			return res.json(users);
-		});
-	},
-
-
-	top20user: function(req, res){
-		var users = {"id": [], "influence": []};
-		var count = 0;
-		User.find().exec(function callback(error, list){
-			if(error){
-				console.log('Erro durante a busca. (UserController.js)');
-			}
-			//para cada usuario calcula a influencia
-			list.forEach(function(user, index){
-				Tweet.find({user: user.id}).populate('shared').populate('reacted').exec(function callback(error, tweets){
-					tweets.forEach(function(tweet){
-						tweet.shared.forEach(function(){
-							count += 2;
-						});
-						tweet.reacted.forEach(function(){
-							count++;
-						});						
-					});
-					users.id.push(user.id);
-					users.influence.push(count);
-					count = 0;
-					if(index == 0){
-						return res.json(users);
-					}
-				});
-			});
-		});
-	},
-
-	top20userQuery: function(req, res){
 		var users = [];
 		var userAtual = "";
 		User.query('select U.name, TR.user_reactions reaction, TS.tweet_shared,COUNT(TR.user_reactions), COUNT(TS.user_shared)*2 Influence from "user" U join tweet T on U.id = T.user join tweet_reacted__user_reactions TR on T.id = TR.tweet_reacted join tweet_shared__user_shared TS on T.id = TS.tweet_shared group by U.name, TR.user_reactions, TS.tweet_shared order by U.name', function(error, list){
@@ -210,7 +160,6 @@ module.exports = {
 			orderUsers.sort(function(a,b) {
 				return b.influence - a.influence;
 			});
-			console.log(orderUsers);
 			return res.json(orderUsers);
 		});
 	}

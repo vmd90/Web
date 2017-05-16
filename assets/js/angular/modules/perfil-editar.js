@@ -1,24 +1,25 @@
 var perfilEditar_module = angular.module('app.perfil-editar', []);
 
-perfilEditar_module.controller('perfilEditarController', function ($scope, Service) {
+perfilEditar_module.controller('perfilEditarController', function ($scope, Service, $location) {
     var user = Service.get_user();
     if(!user) {
         window.location = "/";
     }
     //console.log(user);
-    
+
     $scope.user_photo = user.photo;
 	$scope.user_name = '';
 	$scope.user_bio = '';
 	$scope.user_birthday = '';
 	$scope.user_email = '';
     $scope.user_password = '';
-    
+
     $scope.cancel = function() {
         // Volta para pagina de perfil
-        window.location = "#/perfil.html";
+        //window.location = "#/perfil.html";
+        $location.path('/perfil.html');
     }
-    
+
     $scope.save = function () {
         // Atualiza as informacoes do usuario
         var old_info = {'id': user.id};
@@ -61,6 +62,7 @@ perfilEditar_module.controller('perfilEditarController', function ($scope, Servi
             }
         );
         Service.set_user(user);
-        window.location = "#/perfil.html";
+        //window.location = "#/perfil.html";
+        $location.path('perfil.html');
     }
 });

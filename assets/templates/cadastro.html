@@ -1,10 +1,10 @@
 <div id="div-cadastro" class="container" ng-controller="cadastroController">
-		<form class="form-horizontal">
+		<form class="form-horizontal" ng-submit="cadastrar()">
 			<div class="control-group row">
 				<div class="col-md-4 col-md-offset-4">
 					<label class="control-label">Nome: </label>
 					<div class="controls">
-						<input type="text" class="form-control" placeholder="Nome" ng-model="user_name"><br>
+						<input type="text" class="form-control" placeholder="Nome" ng-model="user_name" required><br>
 					</div>
 				</div>
 			</div>
@@ -12,7 +12,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<label class="control-label">Nascimento: </label>
 					<div class="controls">
-						<input type="text" class="form-control" placeholder="dd/mm/aaaa" ng-model="user_birthday"><br>
+						<input type="text" class="form-control" placeholder="dd/mm/aaaa" ng-model="user_birthday" required><br>
 					</div>
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<label class="control-label">Descrição: </label>
 					<div class="controls">
-						<input type="text" class="form-control" placeholder="Descrição" ng-model="user_bio"><br>
+						<input type="text" class="form-control" placeholder="Descrição" ng-model="user_bio" required><br>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<label class="control-label">E-mail: </label>
 					<div class="controls">
-						<input type="text" class="form-control" placeholder="E-mail" ng-model="user_email"><br>
+						<input type="text" class="form-control" placeholder="E-mail" ng-model="user_email" required><br>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<label class="control-label">Senha: </label>
 					<div class="controls">
-						<input type="password" class="form-control" placeholder="Password" ng-model="user_password"><br>
+						<input type="password" class="form-control" placeholder="Password" ng-model="user_password" required><br>
 					</div>
 				</div>
 			</div>
@@ -52,14 +52,14 @@
 				<div class="col-md-4 col-md-offset-4">
 					<label class="control-label">Confirmar senha: </label>
 					<div class="controls">
-						<input type="password" class="form-control" placeholder="Password" ng-model="user_password2"><br>
+						<input type="password" class="form-control" placeholder="Password" ng-model="user_password2" required><br>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<input type="button" class="btn btn-default" value="Cancelar" ng-click="cancelar()">
-					<input type="button" class="btn btn-primary" value="Cadastrar" ng-click="cadastrar()">
+					<input type="submit" class="btn btn-primary" value="Cadastrar">
 				</div>
 			</div>
 		</form>

@@ -1,6 +1,6 @@
 var index_module = angular.module('app.index', []);
 
-index_module.controller('indexController', function ($scope, Service) {
+index_module.controller('indexController', function ($scope, Service, $location) {
 	//Recupera informações do usuario
 	var user = Service.get_user();
 	var follows;
@@ -37,7 +37,7 @@ index_module.controller('indexController', function ($scope, Service) {
 			console.log('Erro ao recuperar usuario seguindo');
 		}
 	)
-	
+
 
 	//Recupera tweets dos usuário seguidos
 	Service.get_tweets_follows(user.id).then(
@@ -46,7 +46,7 @@ index_module.controller('indexController', function ($scope, Service) {
 			//coloca foto e nome nos tweets
 			var tweets = res.data;
 			tweets.forEach( function (tweet, index_tweet){
-				
+
 				if(tweet.user == user.id){
 					tweets[index_tweet]['photo'] = user.photo;
 					tweets[index_tweet]['name'] = user.name;
@@ -57,7 +57,7 @@ index_module.controller('indexController', function ($scope, Service) {
 							tweets[index_tweet]['photo'] = u.photo;
 							tweets[index_tweet]['name'] = u.name;
 						}
-					});	
+					});
 				}
 				var date = new Date(tweet.createdAt);
 				var f_date = date.getDate().toString() + '/' + (date.getMonth()+1).toString() + '/' + date.getFullYear()
@@ -81,6 +81,9 @@ index_module.controller('indexController', function ($scope, Service) {
 		var tittle = $scope.tweet_title;
 		var text = $scope.tweet_text;
 		var id = user.id
+
+		$scope.tweet_title = '';
+		$scope.tweet_text = '';
 
 		var tweet = {
 			tittle: tittle,
@@ -108,7 +111,7 @@ index_module.controller('indexController', function ($scope, Service) {
 				if(s[0]!="")
 					tweet.users.push(s[0]);
 			}
-		});		
+		});
 
 		//console.log(tweet);
 		Service.add_tweet(tweet).then(
@@ -125,7 +128,7 @@ index_module.controller('indexController', function ($scope, Service) {
 				f_date+=date.getMinutes().toString();
 				t['date'] = f_date;
 				$scope.tweets.push(t);
-				$scope.tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});	
+				$scope.tweets.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt);});
 			},
 			//Erro
 			function (res) {
@@ -152,6 +155,11 @@ index_module.controller('indexController', function ($scope, Service) {
 	},
 
 	$scope.home = function(){
-		window.location = "#/index.html";
+		//window.location = "#/index.html";
+		$location.path('/index.html');
+	},
+
+	$scope.go = function(path) {
+		$location.path(path);
 	}
 });

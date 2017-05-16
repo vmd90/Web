@@ -1,7 +1,7 @@
 var perfil_module = angular.module('app.perfil', []);
 
-perfil_module.controller('perfilController', function ($scope, Service) {
-	
+perfil_module.controller('perfilController', function ($scope, Service, $location) {
+
 	//Recebe usuario logado
 	var user = Service.get_user();
 	if(!user){
@@ -12,7 +12,7 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 	var url = window.location.href;
 	var param = url.split("=");
 	var id = param[1];
-	
+
 	//Recupera informações do perfil
 	Service.find_user(id).then(
 		//OK
@@ -90,7 +90,7 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 					var tweets = res.data;
 					tweets.forEach( function (tweet, index_tweet){
 						if(user.id != tweet.user){
-							tweets[index_tweet]['remove_icon'] = 'hidden';	
+							tweets[index_tweet]['remove_icon'] = 'hidden';
 						}
 						tweets[index_tweet]['photo'] = $scope.user_img;
 						tweets[index_tweet]['name'] = $scope.user_nome;
@@ -115,9 +115,9 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 		function (res){
 			console.log('Erro: perfil.Service.find(user)');
 		}
-	);	
+	);
 
-	
+
 
 	$scope.follow = function (){
 		Service.follow({'user': user.id, 'id': id}).then(
@@ -163,7 +163,8 @@ perfil_module.controller('perfilController', function ($scope, Service) {
 
 
 	$scope.perfil_edit = function () {
-		window.location = "#/perfil-editar.html";
+		//window.location = "#/perfil-editar.html";
+		$location.path('/perfil-editar.html');
 	},
 
 	// Exibe janela para editar tweet

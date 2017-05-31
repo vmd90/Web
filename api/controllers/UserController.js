@@ -16,9 +16,10 @@ module.exports = {
 			'bio': req.param('bio'),
 			'photo': req.param('photo')
 		};
-		User.create(user).exec( function callback(error, created_user){
+		User.create(user).exec( function (error, created_user){
 			if(error){
-				console.log('Erro durante inserção de usuario. (UserController.js)');
+				console.log(error);
+				return;
 			}
 			console.log('Usuario inserido com sucesso');
 			return res.json(created_user);
@@ -27,9 +28,10 @@ module.exports = {
 
 	find_user: function(req, res) {
 		var id = req.param('id');
-		User.findOne({'id': id}).exec(function callback(error, u){
+		User.findOne({'id': id}).exec(function (error, u){
 			if(error){
-				console.log('Erro durante a consulta de usuario');
+				console.log(error);
+				return;
 			}
 
 			return res.json(u);
@@ -40,7 +42,8 @@ module.exports = {
 		var name = req.param('name');
 		User.findOne({'name': name}).exec(function callback(error, u){
 			if(error){
-				console.log('Erro durante a consulta de usuario');
+				console.log(error);
+				return;
 			}
 			return res.json(u);
 		});
@@ -54,7 +57,8 @@ module.exports = {
 			'password': password
 		}).exec( function callback(error, u){
 			if(error){
-				console.log('Email ou senha invalidos');
+				console.log(error);
+				return;
 			}
 
 			return res.json(u);
@@ -65,22 +69,24 @@ module.exports = {
 		var id = req.param('id');
 
 		User.find({id: id})
-		.populate('follower').exec( function (erro, respon){
-			if(erro){
-				console.log('Erro na consulta de seguindo');
+		.populate('follower').exec( function (error, respon){
+			if(error){
+				console.log(error);
+				return;
 			}
 			return res.json(respon[0].follower);
 		});
 	},
-	
+
 	get_groups: function (req, res){
-		
+
 		var user = req.param('id');
-		
+
 		User.find({id: user})
-		.populate('groups').exec( function (erro, respon){
-			if(erro){
-				console.log('Erro na consulta de grupos do usuario (GroupController)');
+		.populate('groups').exec( function (error, respon){
+			if(error){
+				console.log(error);
+				return;
 			}
 			return res.json(respon[0].groups);
 		});
@@ -105,10 +111,13 @@ module.exports = {
 	unfollow: function(req, res){
 		var user_id = req.param('data').user;
 		var follow_id = req.param('data').id;
-		User.findOne(user_id).exec(function callback(erro, user){
-			if(erro) { console.log('Erro ao recuperar user na funcao unfollow');}
+		User.findOne(user_id).exec(function callback(error, user){
+			if(error) {
+				console.log(error);
+				return;
+			}
 			user.follower.remove(follow_id);
-			user.save(function (erro){});
+			user.save(function (error){});
 		});
 		return res.json();
 	},
@@ -117,21 +126,30 @@ module.exports = {
 	follow: function(req, res){
 		var user_id = req.param('data').user;
 		var follow_id = req.param('data').id;
-		User.findOne(user_id).exec(function callback(erro, user){
-			if(erro) { console.log('Erro ao recuperar user na funcao unfollow');}
+		User.findOne(user_id).exec(function callback(error, user){
+			if(error) {
+				console.log(error);
+				return;
+			}
 			user.follower.add(follow_id);
-			user.save(function (erro){});
+			user.save(function (error){});
 		});
-		return res.json();	
+		return res.json();
 	},
 
 	//Get top20
 	get_top20: function(req, res){
 		var users = [];
 		var userAtual = "";
-		User.query('select U.name, TR.user_reactions reaction, TS.tweet_shared,COUNT(TR.user_reactions), COUNT(TS.user_shared)*2 Influence from "user" U join tweet T on U.id = T.user join tweet_reacted__user_reactions TR on T.id = TR.tweet_reacted join tweet_shared__user_shared TS on T.id = TS.tweet_shared group by U.name, TR.user_reactions, TS.tweet_shared order by U.name', function(error, list){
+		User.query(
+			'select U.name, TR.user_reactions reaction, TS.post_shared,COUNT(TR.user_reactions),' +
+			' COUNT(TS.user_shared)*2 Influence from "user" U join post T on U.id = T.user ' +
+			' join post_reacted__user_reactions TR on T.id = TR.post_reacted ' +
+			' join post_shared__user_shared TS on T.id = TS.post_shared ' +
+			' group by U.name, TR.user_reactions, TS.post_shared order by U.name', function(error, list) {
 			if(error){
-				console.log('Erro durante a busca. (UserController.js)');
+				console.log(error);
+				return;
 			}
 			list.rows.forEach(function(row){
 				if(userAtual != row.name){

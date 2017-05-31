@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
-    <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
+    <title><%=typeof title == 'undefined' ? 'Webposter' : title%></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -35,7 +35,7 @@
     <!--STYLES END-->
   </head>
 
-  <body ng-app="app">
+  <body>
     <%- body %>
 
 
@@ -95,16 +95,16 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
-    <script src="/js/angular/controller.js"></script>
-    <script src="/js/angular/modules/cadastro.js"></script>
-    <script src="/js/angular/modules/grupo.js"></script>
-    <script src="/js/angular/modules/grupos.js"></script>
-    <script src="/js/angular/modules/index.js"></script>
-    <script src="/js/angular/modules/login.js"></script>
-    <script src="/js/angular/modules/perfil-editar.js"></script>
-    <script src="/js/angular/modules/perfil.js"></script>
-    <script src="/js/angular/modules/relatorios.js"></script>
-    <script src="/js/angular/modules/service.js"></script>
+    <script src="/js/app/app.js"></script>
+    <script src="/js/app/modules/cadastro.js"></script>
+    <script src="/js/app/modules/grupo.js"></script>
+    <script src="/js/app/modules/grupos.js"></script>
+    <script src="/js/app/modules/index.js"></script>
+    <script src="/js/app/modules/login.js"></script>
+    <script src="/js/app/modules/perfil-editar.js"></script>
+    <script src="/js/app/modules/perfil.js"></script>
+    <script src="/js/app/modules/relatorios.js"></script>
+    <script src="/js/app/modules/service.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

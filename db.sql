@@ -74,23 +74,23 @@ ALTER SEQUENCE group_id_seq OWNED BY "group".id;
 
 
 --
--- Name: group_tweets__tweet_groups; Type: TABLE; Schema: public; Owner: postgres
+-- Name: group_posts__post_groups; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE group_tweets__tweet_groups (
+CREATE TABLE group_posts__post_groups (
     id integer NOT NULL,
-    group_tweets integer,
-    tweet_groups integer
+    group_posts integer,
+    post_groups integer
 );
 
 
-ALTER TABLE group_tweets__tweet_groups OWNER TO postgres;
+ALTER TABLE group_posts__post_groups OWNER TO postgres;
 
 --
--- Name: group_tweets__tweet_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: group_posts__post_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE group_tweets__tweet_groups_id_seq
+CREATE SEQUENCE group_posts__post_groups_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -98,13 +98,13 @@ CREATE SEQUENCE group_tweets__tweet_groups_id_seq
     CACHE 1;
 
 
-ALTER TABLE group_tweets__tweet_groups_id_seq OWNER TO postgres;
+ALTER TABLE group_posts__post_groups_id_seq OWNER TO postgres;
 
 --
--- Name: group_tweets__tweet_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: group_posts__post_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE group_tweets__tweet_groups_id_seq OWNED BY group_tweets__tweet_groups.id;
+ALTER SEQUENCE group_posts__post_groups_id_seq OWNED BY group_posts__post_groups.id;
 
 
 --
@@ -177,23 +177,23 @@ ALTER SEQUENCE theme_id_seq OWNED BY theme.id;
 
 
 --
--- Name: theme_tweets__tweet_themes; Type: TABLE; Schema: public; Owner: postgres
+-- Name: theme_posts__post_themes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE theme_tweets__tweet_themes (
+CREATE TABLE theme_posts__post_themes (
     id integer NOT NULL,
-    theme_tweets integer,
-    tweet_themes integer
+    theme_posts integer,
+    post_themes integer
 );
 
 
-ALTER TABLE theme_tweets__tweet_themes OWNER TO postgres;
+ALTER TABLE theme_posts__post_themes OWNER TO postgres;
 
 --
--- Name: theme_tweets__tweet_themes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: theme_posts__post_themes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE theme_tweets__tweet_themes_id_seq
+CREATE SEQUENCE theme_posts__post_themes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -201,20 +201,20 @@ CREATE SEQUENCE theme_tweets__tweet_themes_id_seq
     CACHE 1;
 
 
-ALTER TABLE theme_tweets__tweet_themes_id_seq OWNER TO postgres;
+ALTER TABLE theme_posts__post_themes_id_seq OWNER TO postgres;
 
 --
--- Name: theme_tweets__tweet_themes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: theme_posts__post_themes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE theme_tweets__tweet_themes_id_seq OWNED BY theme_tweets__tweet_themes.id;
+ALTER SEQUENCE theme_posts__post_themes_id_seq OWNED BY theme_posts__post_themes.id;
 
 
 --
--- Name: tweet; Type: TABLE; Schema: public; Owner: postgres
+-- Name: post; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE tweet (
+CREATE TABLE post (
     tittle text NOT NULL,
     text text NOT NULL,
     "user" integer NOT NULL,
@@ -224,13 +224,13 @@ CREATE TABLE tweet (
 );
 
 
-ALTER TABLE tweet OWNER TO postgres;
+ALTER TABLE post OWNER TO postgres;
 
 --
--- Name: tweet_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: post_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE tweet_id_seq
+CREATE SEQUENCE post_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -238,33 +238,33 @@ CREATE SEQUENCE tweet_id_seq
     CACHE 1;
 
 
-ALTER TABLE tweet_id_seq OWNER TO postgres;
+ALTER TABLE post_id_seq OWNER TO postgres;
 
 --
--- Name: tweet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: post_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE tweet_id_seq OWNED BY tweet.id;
+ALTER SEQUENCE post_id_seq OWNED BY post.id;
 
 
 --
--- Name: tweet_reacted__user_reactions; Type: TABLE; Schema: public; Owner: postgres
+-- Name: post_reacted__user_reactions; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE tweet_reacted__user_reactions (
+CREATE TABLE post_reacted__user_reactions (
     id integer NOT NULL,
-    tweet_reacted integer,
+    post_reacted integer,
     user_reactions integer
 );
 
 
-ALTER TABLE tweet_reacted__user_reactions OWNER TO postgres;
+ALTER TABLE post_reacted__user_reactions OWNER TO postgres;
 
 --
--- Name: tweet_reacted__user_reactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: post_reacted__user_reactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE tweet_reacted__user_reactions_id_seq
+CREATE SEQUENCE post_reacted__user_reactions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -272,33 +272,33 @@ CREATE SEQUENCE tweet_reacted__user_reactions_id_seq
     CACHE 1;
 
 
-ALTER TABLE tweet_reacted__user_reactions_id_seq OWNER TO postgres;
+ALTER TABLE post_reacted__user_reactions_id_seq OWNER TO postgres;
 
 --
--- Name: tweet_reacted__user_reactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: post_reacted__user_reactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE tweet_reacted__user_reactions_id_seq OWNED BY tweet_reacted__user_reactions.id;
+ALTER SEQUENCE post_reacted__user_reactions_id_seq OWNED BY post_reacted__user_reactions.id;
 
 
 --
--- Name: tweet_shared__user_shared; Type: TABLE; Schema: public; Owner: postgres
+-- Name: post_shared__user_shared; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE tweet_shared__user_shared (
+CREATE TABLE post_shared__user_shared (
     id integer NOT NULL,
-    tweet_shared integer,
+    post_shared integer,
     user_shared integer
 );
 
 
-ALTER TABLE tweet_shared__user_shared OWNER TO postgres;
+ALTER TABLE post_shared__user_shared OWNER TO postgres;
 
 --
--- Name: tweet_shared__user_shared_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: post_shared__user_shared_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE tweet_shared__user_shared_id_seq
+CREATE SEQUENCE post_shared__user_shared_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -306,13 +306,13 @@ CREATE SEQUENCE tweet_shared__user_shared_id_seq
     CACHE 1;
 
 
-ALTER TABLE tweet_shared__user_shared_id_seq OWNER TO postgres;
+ALTER TABLE post_shared__user_shared_id_seq OWNER TO postgres;
 
 --
--- Name: tweet_shared__user_shared_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: post_shared__user_shared_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE tweet_shared__user_shared_id_seq OWNED BY tweet_shared__user_shared.id;
+ALTER SEQUENCE post_shared__user_shared_id_seq OWNED BY post_shared__user_shared.id;
 
 
 --
@@ -400,7 +400,7 @@ ALTER TABLE ONLY "group" ALTER COLUMN id SET DEFAULT nextval('group_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY group_tweets__tweet_groups ALTER COLUMN id SET DEFAULT nextval('group_tweets__tweet_groups_id_seq'::regclass);
+ALTER TABLE ONLY group_posts__post_groups ALTER COLUMN id SET DEFAULT nextval('group_posts__post_groups_id_seq'::regclass);
 
 
 --
@@ -421,28 +421,28 @@ ALTER TABLE ONLY theme ALTER COLUMN id SET DEFAULT nextval('theme_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY theme_tweets__tweet_themes ALTER COLUMN id SET DEFAULT nextval('theme_tweets__tweet_themes_id_seq'::regclass);
+ALTER TABLE ONLY theme_posts__post_themes ALTER COLUMN id SET DEFAULT nextval('theme_posts__post_themes_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY tweet ALTER COLUMN id SET DEFAULT nextval('tweet_id_seq'::regclass);
+ALTER TABLE ONLY post ALTER COLUMN id SET DEFAULT nextval('post_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY tweet_reacted__user_reactions ALTER COLUMN id SET DEFAULT nextval('tweet_reacted__user_reactions_id_seq'::regclass);
+ALTER TABLE ONLY post_reacted__user_reactions ALTER COLUMN id SET DEFAULT nextval('post_reacted__user_reactions_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY tweet_shared__user_shared ALTER COLUMN id SET DEFAULT nextval('tweet_shared__user_shared_id_seq'::regclass);
+ALTER TABLE ONLY post_shared__user_shared ALTER COLUMN id SET DEFAULT nextval('post_shared__user_shared_id_seq'::regclass);
 
 
 --
@@ -478,10 +478,10 @@ SELECT pg_catalog.setval('group_id_seq', 3, true);
 
 
 --
--- Data for Name: group_tweets__tweet_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: group_posts__post_groups; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY group_tweets__tweet_groups (id, group_tweets, tweet_groups) FROM stdin;
+COPY group_posts__post_groups (id, group_posts, post_groups) FROM stdin;
 3	1	22
 4	1	23
 5	2	26
@@ -490,10 +490,10 @@ COPY group_tweets__tweet_groups (id, group_tweets, tweet_groups) FROM stdin;
 
 
 --
--- Name: group_tweets__tweet_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: group_posts__post_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('group_tweets__tweet_groups_id_seq', 6, true);
+SELECT pg_catalog.setval('group_posts__post_groups_id_seq', 6, true);
 
 
 --
@@ -550,10 +550,10 @@ SELECT pg_catalog.setval('theme_id_seq', 9, true);
 
 
 --
--- Data for Name: theme_tweets__tweet_themes; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: theme_posts__post_themes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY theme_tweets__tweet_themes (id, theme_tweets, tweet_themes) FROM stdin;
+COPY theme_posts__post_themes (id, theme_posts, post_themes) FROM stdin;
 7	1	22
 8	4	22
 9	1	23
@@ -566,17 +566,17 @@ COPY theme_tweets__tweet_themes (id, theme_tweets, tweet_themes) FROM stdin;
 
 
 --
--- Name: theme_tweets__tweet_themes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: theme_posts__post_themes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('theme_tweets__tweet_themes_id_seq', 14, true);
+SELECT pg_catalog.setval('theme_posts__post_themes_id_seq', 14, true);
 
 
 --
--- Data for Name: tweet; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: post; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tweet (tittle, text, "user", id, "createdAt", "updatedAt") FROM stdin;
+COPY post (tittle, text, "user", id, "createdAt", "updatedAt") FROM stdin;
 c	Olá, @turma2016! A pedido do @joao, segue o vídeo da aula de hoje: $v:"/app/media/aula-hoje.ogg". O conteúdo é tranquilo... $i:"http://upload.wikimedia.org/wikipedia/commons/b/b7/Big_smile.png". Também foi indicado refletir sobre a frase do dia em $l:"http://www.lerolero.com/". Abraço! #aula #prova	1	1	2016-06-15 22:58:25-03	2016-06-15 22:58:25-03
 v	Olá, @turma2016! A pedido do @joao, segue o vídeo da aula de hoje: $v:"/app/media/aula-hoje.ogg". O conteúdo é tranquilo... $i:"http://upload.wikimedia.org/wikipedia/commons/b/b7/Big_smile.png". Também foi indicado refletir sobre a frase do dia em $l:"http://www.lerolero.com/". Abraço! #aula #prova	1	2	2016-06-15 23:00:11-03	2016-06-15 23:00:11-03
 teste 2	ok agora vai	1	21	2016-06-16 21:02:19-03	2016-06-16 21:02:19-03
@@ -591,32 +591,32 @@ Bom dia querido professor	Bom dia querido professor @Girafares, minha mãe mando
 
 
 --
--- Name: tweet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('tweet_id_seq', 28, true);
+SELECT pg_catalog.setval('post_id_seq', 28, true);
 
 
 --
--- Data for Name: tweet_reacted__user_reactions; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: post_reacted__user_reactions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tweet_reacted__user_reactions (id, tweet_reacted, user_reactions) FROM stdin;
+COPY post_reacted__user_reactions (id, post_reacted, user_reactions) FROM stdin;
 \.
 
 
 --
--- Name: tweet_reacted__user_reactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: post_reacted__user_reactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('tweet_reacted__user_reactions_id_seq', 1, false);
+SELECT pg_catalog.setval('post_reacted__user_reactions_id_seq', 1, false);
 
 
 --
--- Data for Name: tweet_shared__user_shared; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: post_shared__user_shared; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tweet_shared__user_shared (id, tweet_shared, user_shared) FROM stdin;
+COPY post_shared__user_shared (id, post_shared, user_shared) FROM stdin;
 7	25	6
 8	26	7
 9	26	2
@@ -624,10 +624,10 @@ COPY tweet_shared__user_shared (id, tweet_shared, user_shared) FROM stdin;
 
 
 --
--- Name: tweet_shared__user_shared_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: post_shared__user_shared_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('tweet_shared__user_shared_id_seq', 9, true);
+SELECT pg_catalog.setval('post_shared__user_shared_id_seq', 9, true);
 
 
 --
@@ -691,11 +691,11 @@ ALTER TABLE ONLY "group"
 
 
 --
--- Name: group_tweets__tweet_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: group_posts__post_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY group_tweets__tweet_groups
-    ADD CONSTRAINT group_tweets__tweet_groups_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY group_posts__post_groups
+    ADD CONSTRAINT group_posts__post_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -715,35 +715,35 @@ ALTER TABLE ONLY theme
 
 
 --
--- Name: theme_tweets__tweet_themes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: theme_posts__post_themes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY theme_tweets__tweet_themes
-    ADD CONSTRAINT theme_tweets__tweet_themes_pkey PRIMARY KEY (id);
-
-
---
--- Name: tweet_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY tweet
-    ADD CONSTRAINT tweet_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY theme_posts__post_themes
+    ADD CONSTRAINT theme_posts__post_themes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: tweet_reacted__user_reactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: post_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY tweet_reacted__user_reactions
-    ADD CONSTRAINT tweet_reacted__user_reactions_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY post
+    ADD CONSTRAINT post_pkey PRIMARY KEY (id);
 
 
 --
--- Name: tweet_shared__user_shared_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: post_reacted__user_reactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY tweet_shared__user_shared
-    ADD CONSTRAINT tweet_shared__user_shared_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY post_reacted__user_reactions
+    ADD CONSTRAINT post_reacted__user_reactions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: post_shared__user_shared_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY post_shared__user_shared
+    ADD CONSTRAINT post_shared__user_shared_pkey PRIMARY KEY (id);
 
 
 --

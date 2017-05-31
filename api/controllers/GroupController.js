@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-	
+
 	get_groups_owner: function(req, res){
 		var id = req.param('id');
 		User.findOne(id)
@@ -29,14 +29,14 @@ module.exports = {
 		});
 	},
 
-	get_group_tweets: function (req, res){
+	get_group_posts: function (req, res){
 		var group_id = req.param('id');
 		Group.findOne(group_id)
-		.populate('tweets').exec(function callback (erro, tweets){
+		.populate('posts').exec(function callback (erro, posts){
 			if(erro){
-				console.log('Erro ao recuperar tweets do grupo');	
+				console.log('Erro ao recuperar posts do grupo');
 			}
-			return res.json(tweets.tweets);
+			return res.json(posts.posts);
 		});
 	},
 

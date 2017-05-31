@@ -49,7 +49,7 @@ body {
 	border-radius: 7px;
 }
 .submit {
-	border-radius: 3px;	
+	border-radius: 3px;
 }
 
 /*Estilo Div Posts*/
@@ -65,7 +65,7 @@ body {
 	border-radius: 10px;
 }
 
-/* Edit Tweet Modal */
+/* Edit Post Modal */
 .modal-header, .modal-title, .close {
 	background-color: #bbb;
 	text-align: center;
@@ -81,7 +81,7 @@ body {
 
 /*Estilo Div Cadastro*/
 #div-cadastro{
-	padding-top: 50px;	
+	padding-top: 50px;
 }
 
 /*Estilo Div Perfil*/

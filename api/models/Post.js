@@ -1,5 +1,5 @@
 /**
- * Theme.js
+ * Post.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -8,15 +8,33 @@
 module.exports = {
 
   attributes: {
-	theme: {
+  	tittle: {
 		type: 'string',
+		required: true,
+		notNull: true
+	},
+	text: {
+		type: 'text',
 		required: true,
 		notNull: true,
 		unique: false
 	},
-	tweets: {
-		collection: 'tweet',
-		via: 'themes'
+	user: {
+		model: 'user',
+		required: true,
+		notNull: true
+	},
+	shared: {
+		collection: 'user',
+		via: 'shared'
+	},
+	groups: {
+		collection: 'group',
+		via: 'posts'
+	},
+	reacted: {
+		collection: 'user',
+		via: 'reactions'
 	}
   }
 };

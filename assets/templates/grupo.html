@@ -104,24 +104,24 @@
 			<!-- Posts -->
 			<section id="div-posts" class="row">
 					<!-- Titulo Posts -->
-					<h3><small>Tweets</small></h3>
+					<h3><small>Posts</small></h3>
 					<div class="col-sm-12">
 						<!-- Posts -->
-						<div class="row" ng-repeat="tweet in group_tweets">
+						<div class="row" ng-repeat="post in group_posts">
 							<div id="posts" class="panel panel-default">
 								<div class="panel-heading">
-									<b>{{tweet.tittle}}</b> - {{tweet.date}}
+									<b>{{post.tittle}}</b> - {{post.date}}
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-2">
-										<a href="#/perfil.html?id={{tweet.user}}"><img ng-src="images/{{tweet.photo}}"></a>
-									</div>	
-									<div class="col-sm-9">
-										<p>{{tweet.text}}</p>
-										<p><a href="#/perfil.html?id={{tweet.user}}">{{tweet.name}}</a></p>
+										<a href="#/perfil.html?id={{post.user}}"><img ng-src="images/{{post.photo}}"></a>
 									</div>
-									<div class="col-sm-1 {{tweet.remove_icon}}">
-										<button ng-click="removeTweet(tweet)" type="button" class="btn btn-default" aria-label="Left Align">
+									<div class="col-sm-9">
+										<p>{{post.text}}</p>
+										<p><a href="#/perfil.html?id={{post.user}}">{{post.name}}</a></p>
+									</div>
+									<div class="col-sm-1 {{post.remove_icon}}">
+										<button ng-click="removePost(post)" type="button" class="btn btn-default" aria-label="Left Align">
 				  							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</div>

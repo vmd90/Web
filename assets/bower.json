@@ -1,6 +1,6 @@
 {
-  "name": "projeto",
-  "description": "projeto",
+  "name": "webposter",
+  "description": "webposter",
   "main": "app.js",
   "license": "MIT",
   "homepage": "login.html",
@@ -14,7 +14,9 @@
   "dependencies": {
     "angular": "*",
     "angular-route": "*",
-    "bootstrap": "*",
-    "jquery": "*"
+    "bootstrap": "^3.3.7",
+    "jquery": "*",
+    "angular-bootstrap": "^2.5.0",
+    "angular-moment": "^1.0.1"
   }
 }

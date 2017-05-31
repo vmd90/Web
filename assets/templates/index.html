@@ -3,7 +3,7 @@
 	<div class="row">
 		<nav class="navbar navbar-default">
 			<div class="col-sm-2">
-			      <a class="navbar-brand" href="#/index.html">WebPoster</a>
+			      <a class="navbar-brand" href="#/index">WebPoster</a>
 			</div>
 			<div class="col-sm-8">
 				<div class="row">
@@ -30,8 +30,8 @@
 				<div class="row">
 					<div id="img-perfil" class="col-sm-8 col-sm-offset-1">
 						<!--<img src="images/img.jpg"/>-->
-						<img ng-src="images/{{user_img}}"/>
-						<h4><a ng-href="#/perfil.html?id={{user_id}}">{{user_nome}}</a></h4>
+						<img src="../assets/images/{{user_img}}"/>
+						<h4><a ng-href="#/perfil?id={{user_id}}">{{user_nome}}</a></h4>
 					</div>
 				</div>
 				<!-- Menu Grupos -->
@@ -39,10 +39,10 @@
 					<div id="menu-grupos" class="col-sm-10 col-sm-offset-1">
 						<h4>Meus Grupos</h4>
 						<div ng-repeat="group in groups">
-							<a ng-href="#/grupo.html?id={{group.id}}">{{group.name}}</a><br />
+							<a ng-href="#/grupo?id={{group.id}}">{{group.name}}</a><br />
 						</div>
 						<div class="col-sm-1 col-sm-offset-11">
-							<a ng-href="#/grupos.html">mais...</a>
+							<a ng-href="#/grupos">mais...</a>
 						</div>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 						<div class="row">
 							<span ng-repeat="follow in follows" class="col-sm-4">
 									<span title="{{follow.name}}">
-										<a ng-href="#/perfil.html?id={{follow.id}}"><img ng-src="images/{{follow.photo}}" /></a>
+										<a ng-href="#/perfil?id={{follow.id}}"><img ng-src="images/{{follow.photo}}" /></a>
 									</span>
 							</span>
 						</div>
@@ -68,10 +68,10 @@
 			<article class="col-sm-8 col-sm-offset-1">
 				<!-- Postar -->
 				<section id="div-post" class="row">
-					<h3><small>Novo Tweet</small></h3>
+					<h3><small>Novo Post</small></h3>
 					<form>
-						<input type="text" class="form-control" placeholder="Titulo" aria-describedby="basic-addon1" ng-model="tweet_title"><br />
-						<textarea id="post" placeholder="O que deseja postar?" cols="100" ng-model='tweet_text'></textarea><br>
+						<input type="text" class="form-control" placeholder="Titulo" aria-describedby="basic-addon1" ng-model="post_title"><br />
+						<textarea id="post" placeholder="O que deseja postar?" cols="100" ng-model='post_text'></textarea><br>
 						<button class="btn btn-default" type="button" title="Cancelar" ng-click="cancelar()">Cancelar</button>
 						<button class="btn btn-default" type="button" title="Postar" ng-click="postar()">Postar</button>
 					</form>
@@ -81,24 +81,24 @@
 				<!-- Posts -->
 				<section id="div-posts" class="row">
 					<!-- Titulo Posts -->
-					<h3><small>Tweets</small></h3>
+					<h3><small>Posts</small></h3>
 					<div class="col-sm-12">
 						<!-- Posts -->
-						<div class="row" ng-repeat="tweet in tweets | filter:q as results">
+						<div class="row" ng-repeat="post in posts | filter:q as results">
 							<div id="posts" class="panel panel-default">
 								<div class="panel-heading">
-									<b>{{tweet.tittle}}</b> - {{tweet.date}}
+									<b>{{post.tittle}}</b> - {{post.date}}
 								</div>
 								<div class="panel-body">
 									<div class="col-sm-2">
-										<a href="#/perfil.html?id={{tweet.user}}"><img ng-src="images/{{tweet.photo}}"/></a>
+										<a href="#/perfil?id={{post.user}}"><img ng-src="images/{{post.photo}}"/></a>
 									</div>
 									<div class="col-sm-9">
-										<p>{{tweet.text}}</p>
-										<p><a href="#/perfil.html?id={{tweet.user}}">{{tweet.name}}</a></p>
+										<p>{{post.text}}</p>
+										<p><a href="#/perfil?id={{post.user}}">{{post.name}}</a></p>
 									</div>
-									<div class="col-sm-1 {{tweet.remove_icon}}">
-										<button ng-click="removeTweet(tweet)" type="button" class="btn btn-default" aria-label="Left Align">
+									<div class="col-sm-1 {{post.remove_icon}}">
+										<button ng-click="removePost(post)" type="button" class="btn btn-default" aria-label="Left Align">
 				  							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 										</button>
 									</div>

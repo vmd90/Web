@@ -57,16 +57,16 @@ module.exports = {
 		collection: 'group',
 		via: 'users'
 	},
-	tweets: {
-		collection: 'tweet',
+	posts: {
+		collection: 'post',
 		via: 'user'
 	},
 	shared: {
-		collection: 'tweet',
+		collection: 'post',
 		via: 'shared'
 	},
 	reactions: {
-		collection: 'tweet',
+		collection: 'post',
 		via: 'reacted'
 	}
   }

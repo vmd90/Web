@@ -26,8 +26,8 @@ module.exports = {
 		collection: 'user',
 		via: 'groups'
 	},
-	tweets:{
-		collection: 'tweet',
+	posts:{
+		collection: 'post',
 		via: 'groups'
 	}
   }

@@ -5,7 +5,7 @@
 	angular.module('app', [
 		'ngRoute'
 	])
-	.config(['$routeProvider', function($routeProvider){
+	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 		$routeProvider
 			.when('/', {
 				templateUrl: '/templates/login.html',
@@ -31,9 +31,9 @@
 			}).when('/relatorios', {
 				templateUrl: '/templates/relatorios.html',
 				controller: 'relatoriosController'
-			})
-			.otherwise({
-				redirectTo: '/'
 			});
+		
+		// use the HTML5 History API
+        $locationProvider.html5Mode(true);
 	}]);
 })();

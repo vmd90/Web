@@ -32,9 +32,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
+  'get /': 'HomeController.index',
+  'get /about': 'HomeController.about',
+
+  'get /wpp': 'HomeController.wpp',
 
   /***************************************************************************
   *                                                                          *

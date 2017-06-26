@@ -1,0 +1,52 @@
+<% title = 'WebPoster' %>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a href="/"> <%= 'AppName' %></a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="/about"> <%= 'About' %></a>
+      </li>
+      <li>
+        <a class="dropdown dropdown-toggle" data-toggle="dropdown" href="/">
+          <%= 'Language' %> <span class="caret"></span>
+          <ul class="dropdown-menu">
+            <% sails.config.i18n.locales.forEach(lang => { %>
+                <li><a href="#"><%= lang %></a></li>
+            <% }); %>
+          </ul>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+    <div id="div-login">
+        <form class="form-signin">
+            <h2 class="form-signin-heading"><%= 'Log in' %></h2>
+
+            <div class="form-group">
+                <input type="email" name="Email" class="form-control" placeholder="Email address" required autofocus>
+            </div>
+            <div class="form-group">
+                <input type="password" name="Password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" value="remember-me" checked="true"> <%= 'Remember me' %>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"><%= 'Log in' %></button>
+        </form>
+        <hr />
+        <button class="btn btn-lg btn-primary btn-block"><%= 'Sign up' %></button>
+    </div>
+</div>
+
+<%- include ../../footer %>

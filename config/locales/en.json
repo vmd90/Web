@@ -1,8 +1,10 @@
 {
-    // App configs ------------------------------
-    "AppName": "WebPoster",
-
-    // Labels -----------------------------------
-    "About": "About",
-    "Login": "Login",
+	"AppName": "AppName",
+	"About": "About",
+	"Language": "Language",
+	"Log in": "Log in",
+	"Email address": "Email address",
+	"Password": "Password",
+	"Remember me": "Remember me",
+	"Sign up": "Sign up"
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html lang="<%= sails.config.i18n.defaultLocale %>">
   <head>
-    <title><%=typeof title == 'undefined' ? 'Webposter' : title%></title>
+    <title><%=typeof title == 'undefined' ? __('AppName') : title %></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -31,7 +31,6 @@
     <!--STYLES-->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/style.css">
     <!--STYLES END-->
   </head>
 

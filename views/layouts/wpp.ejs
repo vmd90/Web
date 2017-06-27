@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" lang="<%= sails.config.i18n.defaultLocale %>">
   <head>
     <title><%=typeof title == 'undefined' ? 'Webposter' : title%></title>
 
@@ -32,7 +32,6 @@
     <!--STYLES-->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/style.css">
     <!--STYLES END-->
   </head>
 

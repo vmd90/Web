@@ -1,4 +1,10 @@
 {
-	"Welcome": "Welcome",
-	"A brand new app.": "A brand new app."
+	"AppName": "AppName",
+	"About": "About",
+	"Language": "Language",
+	"Log in": "Log in",
+	"Email address": "Email address",
+	"Password": "Password",
+	"Remember me": "Remember me",
+	"Sign up": "Sign up"
 }

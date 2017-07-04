@@ -1,0 +1,8 @@
+{
+    // App configs ------------------------------
+    "AppName": "WebPoster",
+
+    // Labels -----------------------------------
+    "About": "Sobre",
+    "Login": "Login",
+}
